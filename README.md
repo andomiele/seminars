@@ -1,2 +1,19 @@
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/andomiele/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/andomiele/frontend-project-12/actions)
+# [React App boilerplate](https://frontend-chat-ru.hexlet.app)
+
+## Requirements
+
+* Node.js & npm
+
+## Setup
+
+```bash
+make install
+```
+
+## Development
+
+```bash
+make develop
+```
+On *localhost:5001*
+
