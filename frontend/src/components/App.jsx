@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
-import LoginForm from './LoginPage';
+import LoginPage from './login/page';
+import PrivateRoute from './PrivateRoute';
 import MainPage from './MainPage';
 import ErrorPage from './NotFoundPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,7 +15,7 @@ const App = () => (
     </nav>
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LoginForm />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<MainPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
