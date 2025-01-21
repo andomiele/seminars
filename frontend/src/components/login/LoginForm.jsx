@@ -1,10 +1,10 @@
 /* eslint-disable functional/no-expression-statement */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
-git 
+import { useDispatch } from 'react-redux';
 import SignupSchema from './shema.js';
 import { setAuth } from '../../slices/authSlice.js';
 
@@ -16,10 +16,7 @@ const LoginForm = () => {
   const handleSubmit = async (values) => {
     await axios.post('/api/v1/login', values)
       .then((response) => {
-        console.log('response.data:', response.data);
-        // localStorage.setItem('token', response.data.token);
-        // localStorage.setItem('username', response.data.username);
-        git 
+        dispatch(setAuth(response.data));
         navigate('/');
       })
       .catch((err) => {

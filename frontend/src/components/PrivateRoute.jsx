@@ -1,20 +1,12 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import React from 'react';
+import { Navigate, Outlet } from 'react-router';
 import { useSelector } from 'react-redux';
-import MainPage from './MainPage';
+import LoginPage from './login/page.jsx';
 
 const PrivatePage = () => {
-  debugger
-  const navigate = useNavigate();
-  const userAuth = useSelector((state) => console.log(state.auth));
+  const userAuth = useSelector((state) => state.auth);
 
-  if (userAuth && userAuth.token) {
-    navigate('/')
-  }
-  if (!userAuth) {
-    navigate('/login')
-  };
-  return {};
+  return userAuth.token ? <Outlet /> : <Navigate to={<LoginPage />} />;
 };
 
 export default PrivatePage;

@@ -1,3 +1,4 @@
+/* eslint-disable functional/no-expression-statement */
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -9,12 +10,14 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setAuth: (state, action) => {
-      console.log('authSlice')
-      localStorage.setItem('token', action.payload.token);
-      localStorage.setItem('username', action.payload.username);
-      state.token = payload.token;
-      state.username = payload.username;
+    setAuth: (state, { payload }) => {
+      localStorage.setItem('token', payload.token);
+      localStorage.setItem('username', payload.username);
+      Object.assign(state, {
+        ...initialState,
+        token: payload.token,
+        username: payload.username,
+      });
     },
   },
 });
