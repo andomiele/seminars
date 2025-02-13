@@ -83,17 +83,11 @@ const init = async (socket) => {
   socket.on('renameChannel', listenerRenameChannel);
   socket.on('newMessage', listenerNewMessage);
 
-  function TestError() {
-    const a = null;
-    return a.hello();
-  }
-
   return (
     <Provider store={store}>
       <I18nextProvider i18n={i18n}>
         <RollbarProvider config={rollbarConfig}>
           <ErrorBoundary>
-            <TestError />
             <App />
           </ErrorBoundary>
         </RollbarProvider>
