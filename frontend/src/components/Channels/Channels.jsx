@@ -39,11 +39,10 @@ const Channels = () => {
                   variant={channel.id === currentChanel.id ? 'secondary' : ''}
                 >
                   <span className="visually-hidden">
-                    {t('modal.menu')}
+                    {t('channelMenu.control')}
                   </span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <span className="visually-hidden">{t('channelMenu.control')}</span>
                   <Dropdown.Item
                     onClick={() => dispatch(showModalInfo({
                       isVisible: true,
