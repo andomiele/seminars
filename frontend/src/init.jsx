@@ -27,7 +27,7 @@ const init = async (socket) => {
   const listenerNewChannel = (payload) => {
     store.dispatch(
       channelsApi.util.updateQueryData(
-        'addChannel',
+        'getСhannels',
         undefined,
         (draftChannels) => {
           draftChannels.push(payload);
@@ -55,7 +55,7 @@ const init = async (socket) => {
     }
     store.dispatch(
       channelsApi.util.updateQueryData(
-        'deleteChannel',
+        'getСhannels',
         undefined,
         (draftChannels) => draftChannels.filter(({ id }) => id !== payload.id),
       ),
@@ -65,7 +65,7 @@ const init = async (socket) => {
   const listenerRenameChannel = (payload) => {
     store.dispatch(
       channelsApi.util.updateQueryData(
-        'editChannel',
+        'getСhannels',
         undefined,
         (draftChannels) => {
           const channel = draftChannels.find((item) => item.id === payload.id);
