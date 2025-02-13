@@ -25,7 +25,7 @@ const Channels = () => {
           <div role="group" className="d-flex show dropdown btn-group">
             <button
               type="button"
-              className={`btn w-100 rounded-0 text-start text-truncate ${channel.id && channel.id === currentChanel.id ? 'btn-secondary' : ''}`}
+              className={`w-100 rounded-0 text-start text-truncate btn ${channel.id && channel.id === currentChanel.id ? 'btn-secondary' : ''}`}
               onClick={() => dispatch(setChannel(channel))}
             >
               <span className="me-1">#</span>
