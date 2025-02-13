@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign */
-/* eslint-disable functional/no-expression-statement */
 import { createSlice } from '@reduxjs/toolkit';
 import { channelsApi } from '../../services/channelsApi';
 import { messagesApi } from '../../services/messagesApi';
@@ -19,12 +18,14 @@ const uiSlice = createSlice({
   initialState,
   reducers: {
     showModalInfo: (state, { payload }) => {
-      state.modal = {
+      Object.assign(state.modal, {
+        ...initialState,
         isVisible: true,
         type: payload.type,
         data: payload.data,
-      };
+      });
     },
+
     hideModalInfo: (state) => {
       state.modal = initialState.modal;
     },

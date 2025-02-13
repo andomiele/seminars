@@ -1,4 +1,3 @@
-/* eslint-disable functional/no-conditional-statement */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dropdown } from 'react-bootstrap';

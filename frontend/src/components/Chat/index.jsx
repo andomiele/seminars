@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable functional/no-expression-statement */
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useGetMessagesQuery } from '../../services/messagesApi.js';
@@ -14,7 +12,9 @@ const Chat = () => {
   const currentMessages = messages.filter((message) => message.channelId === currentChanel.id);
   const userName = useSelector((state) => state.auth.username);
 
-  isLoading ? <Spinner /> : null;
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>

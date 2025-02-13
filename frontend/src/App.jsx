@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable functional/no-expression-statement */
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { ToastContainer as Toaster, Zoom, toast } from 'react-toastify';

@@ -1,4 +1,3 @@
-/* eslint-disable functional/no-expression-statement */
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRightSquare } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';

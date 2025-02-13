@@ -1,4 +1,3 @@
-/* eslint-disable functional/no-conditional-statement */
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';

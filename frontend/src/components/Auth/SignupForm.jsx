@@ -1,5 +1,3 @@
-/* eslint-disable functional/no-conditional-statement */
-/* eslint-disable functional/no-expression-statement */
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
@@ -19,7 +17,6 @@ const SignupForm = () => {
   const [setUser] = useSetUserMutation();
 
   const handleSubmit = async (values) => {
-    setError(false);
     await setUser({ username: values.username, password: values.password })
       .then((response) => {
         if (response.error) {

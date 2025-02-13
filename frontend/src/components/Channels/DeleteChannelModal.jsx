@@ -1,5 +1,3 @@
-/* eslint-disable functional/no-conditional-statement */
-/* eslint-disable functional/no-expression-statement */
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Modal } from 'react-bootstrap';

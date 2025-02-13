@@ -1,6 +1,3 @@
-/* eslint-disable functional/no-conditional-statement */
-/* eslint-disable functional/no-expression-statement */
-
 import i18next from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { Provider } from 'react-redux';
@@ -8,7 +5,7 @@ import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import { setChannel } from './redux/slices/channelsSlice.js';
 import { channelsApi } from './services/channelsApi';
 import { messagesApi } from './services/messagesApi';
-import { rollbarConfig } from './components/configs/rollbar.js';
+import rollbarConfig from './components/configs/rollbar.js';
 import App from './App';
 import resources from './locales/index.js';
 import store from './redux/store.js';

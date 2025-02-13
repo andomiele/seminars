@@ -1,5 +1,3 @@
-/* eslint-disable functional/no-conditional-statement */
-/* eslint-disable functional/no-expression-statement */
 import React from 'react';
 import { PlusSquare } from 'react-bootstrap-icons';
 import { useDispatch } from 'react-redux';

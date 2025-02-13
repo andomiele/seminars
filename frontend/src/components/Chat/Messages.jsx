@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable functional/no-expression-statement */
 import React, { useRef, useEffect } from 'react';
 import leoProfanity from 'leo-profanity';
 
@@ -9,7 +7,9 @@ const Messages = ({ currentMessages }) => {
 
   const inputRef = useRef(null);
   useEffect(() => {
-    inputRef.current ? inputRef.current.scrollIntoView() : null;
+    if (inputRef.current) {
+      inputRef.current.scrollIntoView();
+    }
   }, [currentMessages]);
 
   return (

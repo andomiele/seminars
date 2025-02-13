@@ -1,5 +1,3 @@
-/* eslint-disable functional/no-conditional-statement */
-/* eslint-disable functional/no-expression-statement */
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { Modal } from 'react-bootstrap';
@@ -22,7 +20,8 @@ const EditChannelModal = ({ uiState, hideModal }) => {
 
   const inputRef = useRef();
   useEffect(() => {
-    inputRef.current.focus();
+    const any = inputRef.current;
+    return any.focus();
   }, []);
 
   useEffect(() => {

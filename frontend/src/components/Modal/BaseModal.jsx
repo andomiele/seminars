@@ -1,4 +1,3 @@
-/* eslint-disable functional/no-conditional-statement */
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
@@ -32,7 +31,6 @@ const BaseModal = () => {
   const hideModal = () => dispatch(hideModalInfo({
     isVisible: false,
     type: null,
-    // error: null,
     data: null,
   }));
 
