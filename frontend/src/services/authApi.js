@@ -2,21 +2,26 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const usersApi = createApi({
   reducerPath: 'login',
-  baseQuery: fetchBaseQuery({ baseUrl: '/api/v1/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: '/api/v1' }),
   endpoints: (builder) => ({
-    loginUser: builder.mutation({
-      query: (login) => ({
+    getAuth: builder.mutation({
+      query: (user) => ({
+        url: 'login',
         method: 'POST',
-        body: login,
+        body: user,
       }),
     }),
-    getСhannels: builder.query({
-      query: (channels) => channels,
+    setUser: builder.mutation({
+      query: (user) => ({
+        url: 'signup',
+        method: 'POST',
+        body: user,
+      }),
     }),
   }),
 });
 
 export const {
-  useLoginUserMutation,
-  useGetChannelsQuery,
+  useGetAuthMutation,
+  useSetUserMutation,
 } = usersApi;
