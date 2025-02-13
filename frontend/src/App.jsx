@@ -17,7 +17,9 @@ const App = () => {
   const ui = useSelector((state) => state.ui);
 
   useEffect(() => {
-    ui.error ? toast.error(t(`toasts.${ui.error}`)) : null;
+    if (ui.error) {
+      toast.error(t(`toasts.${ui.error}`));
+    }
   }, [ui, t]);
 
   return (
