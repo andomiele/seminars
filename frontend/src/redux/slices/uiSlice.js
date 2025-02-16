@@ -22,7 +22,9 @@ const setError = (state, { payload }) => {
   if (!error) {
     clearError(state);
   }
-  state.error = payload.status;
+  if (payload.status === 'FETCH_ERROR' || payload.status === 500) {
+    state.error = payload.status;
+  }
 };
 
 const clearErrorEndpoints = [
