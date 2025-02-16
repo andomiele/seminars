@@ -9,9 +9,6 @@ import { useAddChannelMutation, useGetСhannelsQuery } from '../../services/chan
 import channelSchema from './shema.js';
 import { setChannel } from '../../redux/slices/channelsSlice.js';
 
-leoProfanity.add(leoProfanity.getDictionary('en'));
-leoProfanity.add(leoProfanity.getDictionary('ru'));
-
 const AddChannelModal = ({ uiState, hideModal }) => {
   const [addChannel, { isSuccess }] = useAddChannelMutation();
   const { data: channels = [] } = useGetСhannelsQuery();
@@ -30,7 +27,7 @@ const AddChannelModal = ({ uiState, hideModal }) => {
   }, [isSuccess, t]);
 
   const handleSubmit = async (values) => {
-    const channelName = leoProfanity.clean(values.name);
+    const channelName = leoProfanity.clean(values.name.trim());
     await addChannel({ name: channelName })
       .then((response) => {
         dispatch(setChannel(response.data));

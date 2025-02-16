@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/andomiele/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/andomiele/frontend-project-12/actions)",
+  "description": "Multiple user chat",
   "main": "index.js",
   "scripts": {
     "build": "npm run build --prefix frontend",
@@ -12,10 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hexlet/chat-server": "^2.0.4",
-    "leo-profanity": "^1.7.0",
-    "react-router": "^7.1.1",
-    "react-router-dom": "^7.1.1",
-    "react-toastify": "^11.0.3"
+    "@hexlet/chat-server": "^2.0.4"
   }
 }

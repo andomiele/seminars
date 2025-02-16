@@ -1,3 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+import leoProfanity from 'leo-profanity';
 import i18next from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { Provider } from 'react-redux';
@@ -9,9 +12,11 @@ import rollbarConfig from './components/configs/rollbar.js';
 import App from './App';
 import resources from './locales/index.js';
 import store from './redux/store.js';
-import 'react-toastify/dist/ReactToastify.css';
 
 const init = async (socket) => {
+  leoProfanity.add(leoProfanity.getDictionary('en'));
+  leoProfanity.add(leoProfanity.getDictionary('ru'));
+
   const i18n = i18next.createInstance();
 
   await i18n

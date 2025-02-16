@@ -9,9 +9,6 @@ import { useEditChannelMutation, useGetСhannelsQuery } from '../../services/cha
 import channelSchema from './shema.js';
 import { setChannel } from '../../redux/slices/channelsSlice.js';
 
-leoProfanity.add(leoProfanity.getDictionary('en'));
-leoProfanity.add(leoProfanity.getDictionary('ru'));
-
 const EditChannelModal = ({ uiState, hideModal }) => {
   const [editChannel, { isSuccess }] = useEditChannelMutation();
   const { data: channels = [] } = useGetСhannelsQuery();
@@ -31,7 +28,7 @@ const EditChannelModal = ({ uiState, hideModal }) => {
   }, [isSuccess, t]);
 
   const handleSubmit = async (values) => {
-    const newChannelName = leoProfanity.clean(values.name);
+    const newChannelName = leoProfanity.clean(values.name.trim());
     await editChannel({ id: uiState.modal.data.id, name: newChannelName })
       .then((response) => {
         dispatch(setChannel(response.data));

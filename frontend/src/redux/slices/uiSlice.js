@@ -13,6 +13,40 @@ const initialState = {
   },
 };
 
+const clearError = (state) => {
+  state.error = null;
+};
+
+const setError = (state, { payload }) => {
+  const error = (payload?.status);
+  if (!error) {
+    clearError(state);
+  }
+  state.error = payload.status;
+};
+
+const clearErrorEndpoints = [
+  channelsApi.endpoints.addChannel.matchPending,
+  channelsApi.endpoints.editChannel.matchPending,
+  channelsApi.endpoints.addChannel.matchPending,
+  channelsApi.endpoints.getСhannels.matchPending,
+  messagesApi.endpoints.getMessages.matchPending,
+  messagesApi.endpoints.addMessage.matchPending,
+  usersApi.endpoints.getAuth.matchPending,
+  usersApi.endpoints.setUser.matchPending,
+];
+
+const setErrorEndpoints = [
+  channelsApi.endpoints.addChannel.matchRejected,
+  channelsApi.endpoints.editChannel.matchRejected,
+  channelsApi.endpoints.deleteChannel.matchRejected,
+  channelsApi.endpoints.getСhannels.matchRejected,
+  messagesApi.endpoints.getMessages.matchRejected,
+  messagesApi.endpoints.addMessage.matchRejected,
+  usersApi.endpoints.getAuth.matchRejected,
+  usersApi.endpoints.setUser.matchRejected,
+];
+
 const uiSlice = createSlice({
   name: 'ui',
   initialState,
@@ -31,104 +65,12 @@ const uiSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addMatcher(
-      channelsApi.endpoints.addChannel.matchPending,
-      (state) => {
-        state.error = null;
-      },
-    );
-    builder.addMatcher(
-      channelsApi.endpoints.addChannel.matchRejected,
-      (state, { payload }) => {
-        state.error = payload.status;
-      },
-    );
-    builder.addMatcher(
-      channelsApi.endpoints.editChannel.matchPending,
-      (state) => {
-        state.error = null;
-      },
-    );
-    builder.addMatcher(
-      channelsApi.endpoints.editChannel.matchRejected,
-      (state, { payload }) => {
-        state.error = payload.status;
-      },
-    );
-    builder.addMatcher(
-      channelsApi.endpoints.addChannel.matchPending,
-      (state) => {
-        state.error = null;
-      },
-    );
-    builder.addMatcher(
-      channelsApi.endpoints.deleteChannel.matchRejected,
-      (state, { payload }) => {
-        state.error = payload.status;
-      },
-    );
-    builder.addMatcher(
-      channelsApi.endpoints.getСhannels.matchPending,
-      (state) => {
-        state.error = null;
-      },
-    );
-    builder.addMatcher(
-      channelsApi.endpoints.getСhannels.matchRejected,
-      (state, { payload }) => {
-        state.error = payload.status;
-      },
-    );
-
-    builder.addMatcher(
-      messagesApi.endpoints.getMessages.matchPending,
-      (state) => {
-        state.error = null;
-      },
-    );
-    builder.addMatcher(
-      messagesApi.endpoints.getMessages.matchRejected,
-      (state, { payload }) => {
-        state.error = payload.status;
-      },
-    );
-    builder.addMatcher(
-      messagesApi.endpoints.addMessage.matchPending,
-      (state) => {
-        state.error = null;
-      },
-    );
-    builder.addMatcher(
-      messagesApi.endpoints.addMessage.matchRejected,
-      (state, { payload }) => {
-        state.error = payload.status;
-      },
-    );
-
-    builder.addMatcher(
-      usersApi.endpoints.getAuth.matchPending,
-      (state) => {
-        state.error = null;
-      },
-    );
-    builder.addMatcher(
-      usersApi.endpoints.getAuth.matchRejected,
-      (state, { payload }) => {
-        state.error = payload.status;
-      },
-    );
-    builder.addMatcher(
-      usersApi.endpoints.setUser.matchPending,
-      (state) => {
-        state.error = null;
-      },
-    );
-    builder.addMatcher(
-      usersApi.endpoints.setUser.matchRejected,
-      (state, { payload }) => {
-        state.error = payload.status;
-      },
-    );
+    clearErrorEndpoints.forEach((endpoint) => {
+      builder.addMatcher(endpoint, clearError);
+    });
+    setErrorEndpoints.forEach((endpoint) => {
+      builder.addMatcher(endpoint, setError);
+    });
   },
 });
 

@@ -22,7 +22,11 @@ const SignupForm = () => {
         if (response.error) {
           setStatus(response.error.status);
         }
-        dispatch(setAuth(response.data));
+        dispatch(setAuth({
+          username: response.data.username,
+          token: response.data.token,
+          isAuth: true,
+        }));
         navigate('/');
       })
       .catch((err) => {

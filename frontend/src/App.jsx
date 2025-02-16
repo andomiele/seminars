@@ -10,7 +10,6 @@ import PrivateRoute from './misc/PrivateRoute.jsx';
 import Header from './components/Header/Header.jsx';
 import MainPage from './components/Main/MainPage.jsx';
 import ErrorPage from './components/NotFound/NotFoundPage.jsx';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   const { t } = useTranslation();
@@ -30,8 +29,6 @@ const App = () => {
           <Route element={<PublicRoute />}>
             <Route path="/login" element={<AuthPage />} />
             <Route path="/signup" element={<SignupPage />} />
-          </Route>
-          <Route element={<PublicRoute />}>
             <Route path="*" element={<ErrorPage />} />
           </Route>
           <Route element={<PrivateRoute />}>

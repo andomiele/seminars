@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import AddChannelBtn from '../Buttons/AddChannelBtn.jsx';
 import Channels from '../Channels/Channels.jsx';
 import Chat from '../Chat/index.jsx';
@@ -9,7 +10,7 @@ import BaseModal from '../Modal/BaseModal.jsx';
 const MainPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const userAuth = localStorage.getItem('token');
+  const userAuth = useSelector((state) => state.auth.isAuth);
 
   return (
     !userAuth ? navigate('/login') : (
