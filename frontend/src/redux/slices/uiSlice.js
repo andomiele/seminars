@@ -5,7 +5,9 @@ import { messagesApi } from '../../services/messagesApi';
 import { usersApi } from '../../services/authApi';
 
 const initialState = {
-  error: null,
+  error: {
+    status: null,
+  },
   modal: {
     isVisible: false,
     type: null,
@@ -14,17 +16,11 @@ const initialState = {
 };
 
 const clearError = (state) => {
-  state.error = null;
+  state.error.status = '';
 };
 
 const setError = (state, { payload }) => {
-  const error = (payload?.status);
-  if (!error) {
-    clearError(state);
-  }
-  if (payload.status === 'FETCH_ERROR' || payload.status === 500) {
-    state.error = payload.status;
-  }
+  state.error.status = payload.status || null;
 };
 
 const clearErrorEndpoints = [
@@ -65,6 +61,7 @@ const uiSlice = createSlice({
     hideModalInfo: (state) => {
       state.modal = initialState.modal;
     },
+    clearError,
   },
   extraReducers: (builder) => {
     clearErrorEndpoints.forEach((endpoint) => {
@@ -79,6 +76,7 @@ const uiSlice = createSlice({
 export const {
   showModalInfo,
   hideModalInfo,
+  clearError: clearErrorAction,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

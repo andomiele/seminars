@@ -5,12 +5,14 @@ import Spinner from '../Spinner/Spinner.jsx';
 import ChatForm from './ChatForm';
 import ChatHeader from './ChatHeader';
 import Messages from './Messages';
+import { selectUsername } from '../../redux/slices/authSlice.js';
+import { selectCurrentChannel } from '../../redux/slices/channelsSlice.js';
 
 const Chat = () => {
   const { data: messages = [], isLoading } = useGetMessagesQuery();
-  const currentChanel = useSelector((state) => state.channel);
+  const currentChanel = useSelector(selectCurrentChannel);
   const currentMessages = messages.filter((message) => message.channelId === currentChanel.id);
-  const userName = useSelector((state) => state.auth.username);
+  const userName = useSelector(selectUsername);
 
   if (isLoading) {
     return <Spinner />;

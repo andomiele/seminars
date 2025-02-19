@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 const initialState = {
   id: '1',
@@ -21,4 +21,9 @@ const channelsSlice = createSlice({
 });
 
 export const { setChannel } = channelsSlice.actions;
+
+const selectChannel = (state) => state.channel;
+
+export const selectCurrentChannel = createSelector(selectChannel, ((channel) => channel));
+
 export default channelsSlice.reducer;

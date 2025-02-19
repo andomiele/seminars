@@ -1,7 +1,11 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-const selector = (state) => state.ui;
+const selectUi = (state) => state.ui;
 
-const selectError = createSelector(selector, (state) => state.error);
+const selectError = createSelector(selectUi, ((state) => state.error));
 
-export default selectError;
+export const selectToastsError = createSelector(selectError, (error) => (
+  error.status !== 401 && error.status !== 409 ? error.status : null));
+
+export const selectAuthError = createSelector(selectError, (error) => (
+  error.status === 401 || error.status === 409 ? error.status : null));

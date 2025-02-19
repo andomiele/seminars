@@ -4,14 +4,14 @@ import { Dropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { showModalInfo } from '../../redux/slices/uiSlice';
 import { useGetСhannelsQuery } from '../../services/channelsApi.js';
-import { setChannel } from '../../redux/slices/channelsSlice.js';
+import { setChannel, selectCurrentChannel } from '../../redux/slices/channelsSlice.js';
 import Spinner from '../Spinner/Spinner.jsx';
 
 const Channels = () => {
   const { data: channels = [], isLoading } = useGetСhannelsQuery();
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const currentChanel = useSelector((state) => state.channel);
+  const currentChanel = useSelector(selectCurrentChannel);
 
   if (isLoading) {
     return <Spinner />;

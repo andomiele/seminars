@@ -2,9 +2,6 @@ import React, { useRef, useEffect } from 'react';
 import leoProfanity from 'leo-profanity';
 
 const Messages = ({ currentMessages }) => {
-  leoProfanity.add(leoProfanity.getDictionary('en'));
-  leoProfanity.add(leoProfanity.getDictionary('ru'));
-
   const inputRef = useRef(null);
   useEffect(() => {
     if (inputRef.current) {

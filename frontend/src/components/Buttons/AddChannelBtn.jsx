@@ -25,7 +25,7 @@ const AddChannelBtn = () => {
       }))}
     >
       <PlusSquare size={20} />
-      <span className="visually-hidden">{t('mainePage.plus')}</span>
+      <span className="visually-hidden">{t('mainPage.plus')}</span>
     </button>
   );
 };

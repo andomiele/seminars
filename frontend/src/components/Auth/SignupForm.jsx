@@ -1,36 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Form, Image, Col } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import avatarSignup from '../../assets/avatarSignup.jpg';
-import { SignupSchema } from './shema.js';
+import { signupSchema } from './shema.js';
 import { setAuth } from '../../redux/slices/authSlice.js';
 import { useSetUserMutation } from '../../services/authApi.js';
+import { clearErrorAction } from '../../redux/slices/uiSlice.js';
+import { selectAuthError } from '../../redux/slices/selectorsUi.js';
 
 const SignupForm = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [error, setError] = useState(null);
-  const [status, setStatus] = useState(null);
   const [setUser] = useSetUserMutation();
+  const authError = useSelector(selectAuthError);
 
   const handleSubmit = async (values) => {
-    await setUser({ username: values.username, password: values.password })
+    await setUser(values)
       .then((response) => {
-        if (response.error) {
-          setStatus(response.error.status);
-        }
+        dispatch(clearErrorAction);
         dispatch(setAuth({
           username: response.data.username,
           token: response.data.token,
-          isAuth: true,
         }));
         navigate('/');
       })
       .catch((err) => {
-        setError(true);
         console.log(err.message);
       });
   };
@@ -41,74 +39,77 @@ const SignupForm = () => {
       password: '',
       confirmPassword: '',
     },
-    validationSchema: SignupSchema,
+    validationSchema: signupSchema,
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit: handleSubmit,
   });
 
+  const extraErrors = {
+    ...formik.errors,
+    ...(!!authError && { confirmPassword: authError }),
+  };
+
   return (
     <>
-      <div>
-        <img src={avatarSignup} className="rounded-circle" alt="Регистрация" />
-      </div>
-      <form className="w-50" onSubmit={formik.handleSubmit}>
+      <Col className="col-12 col-md-6 d-flex align-items-center justify-content-center">
+        <Image src={avatarSignup} roundedCircle alt="Регистрация" />
+      </Col>
+      <Form className="col-12 col-md-6 mt-3 mt-md-0" onSubmit={formik.handleSubmit}>
         <h1 className="text-center mb-4">{t('signupForm.registration')}</h1>
-        <div className="form-floating mb-3">
-          <input
+        <Form.Group className="form-floating mb-3">
+          <Form.Control
+            type="username"
             placeholder="От 3 до 20 символов"
             name="username"
-            autoComplete="username"
-            required=""
-            id="username"
-            className={`form-control ${formik.errors.username || error ? 'is-invalid' : null}`}
+            className="form-control"
+            isInvalid={formik.errors.username || !!authError}
             onChange={formik.handleChange}
             value={formik.values.username}
           />
-          {formik.touched.username && formik.errors.username ? (
-            <div className="invalid-tooltip">{t(`errors.${formik.errors.username}`)}</div>
-          ) : null}
-          <label className="form-label" htmlFor="username">{t('signupForm.userName')}</label>
-        </div>
-        <div className="form-floating mb-3">
-          <input
+          {!authError && (
+            <Form.Control.Feedback className="invalid-tooltip">
+              {t(`errors.${extraErrors.username}`)}
+            </Form.Control.Feedback>
+          )}
+          <Form.Label>{t('signupForm.userName')}</Form.Label>
+        </Form.Group>
+        <Form.Group className="form-floating mb-3">
+          <Form.Control
+            type="password"
             placeholder="Не менее 6 символов"
             name="password"
-            aria-describedby="passwordHelpBlock"
-            required=""
-            autoComplete="new-password"
-            type="password"
-            id="password"
-            className={`form-control ${formik.errors.password || error ? 'is-invalid' : null}`}
+            className="form-control"
+            isInvalid={formik.errors.password || !!authError}
             onChange={formik.handleChange}
             value={formik.values.password}
           />
-          {formik.touched.password && formik.errors.password ? (
-            <div className="invalid-tooltip">{t(`errors.${formik.errors.password}`)}</div>
-          ) : null}
-          <label className="form-label" htmlFor="password">{t('signupForm.password')}</label>
-        </div>
-        <div className="form-floating mb-4">
-          <input
+          {!authError && (
+            <Form.Control.Feedback className="invalid-tooltip">
+              {t(`errors.${extraErrors.password}`)}
+            </Form.Control.Feedback>
+          )}
+          <Form.Label>{t('signupForm.password')}</Form.Label>
+        </Form.Group>
+        <Form.Group className="form-floating mb-3">
+          <Form.Control
+            type="password"
             placeholder="Пароли должны совпадать"
             name="confirmPassword"
-            required=""
-            autoComplete="new-password"
-            type="password"
-            id="confirmPassword"
-            className={`form-control ${formik.errors.confirmPassword || error ? 'is-invalid' : null}`}
+            className="form-control"
+            isInvalid={formik.errors.confirmPassword || !!authError}
             onChange={formik.handleChange}
             value={formik.values.confirmPassword}
           />
-          {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-            <div className="invalid-tooltip">{t(`errors.${formik.errors.confirmPassword}`)}</div>
-          ) : null}
-          {status === 409 ? (<div className="invalid-tooltip">{t('errors.error_409')}</div>
-          ) : null}
-          <label className="form-label" htmlFor="confirmPassword">{t('signupForm.confirmPassword')}</label>
-        </div>
-        <button type="submit" className="w-100 btn btn-outline-primary">{t('signupForm.signup')}</button>
-      </form>
+          <Form.Control.Feedback className="invalid-tooltip">
+            {t(`errors.${extraErrors.confirmPassword}`)}
+          </Form.Control.Feedback>
+          <Form.Label>{t('signupForm.confirmPassword')}</Form.Label>
+        </Form.Group>
+        <button type="submit" className="w-100 mb-3 btn btn-outline-primary">
+          {t('signupForm.signup')}
+        </button>
+      </Form>
     </>
   );
 };

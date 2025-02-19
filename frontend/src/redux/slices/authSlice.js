@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+/* eslint-disable no-param-reassign */
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   token: localStorage.getItem('token'),
   username: localStorage.getItem('username'),
-  isAuth: false,
 };
 
 const authSlice = createSlice({
@@ -17,11 +17,17 @@ const authSlice = createSlice({
         ...initialState,
         token: payload.token,
         username: payload.username,
-        isAuth: payload.isAuth,
       });
     },
   },
 });
 
 export const { setAuth } = authSlice.actions;
+
+const selectAuth = (state) => state.auth;
+
+export const selectIsAuth = createSelector(selectAuth, ((auth) => auth.token));
+export const selectUsername = createSelector(selectAuth, ((auth) => auth.username));
+// Добавить селекторы
+
 export default authSlice.reducer;

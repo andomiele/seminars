@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { Modal } from 'react-bootstrap';
+import { Modal, Form, Card } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
@@ -52,27 +52,28 @@ const AddChannelModal = ({ uiState, hideModal }) => {
         <Modal.Title>{uiState.modal.data.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <form className="" onSubmit={formik.handleSubmit}>
-          <div>
-            <input
+        <Form onSubmit={formik.handleSubmit}>
+          <Form.Group>
+            <Form.Control
               name="name"
-              id="name"
               placeholder=""
-              className={`mb-2 form-control ${formik.errors.name ? 'is-invalid' : null}`}
+              className="mb-2 form-control"
+              isInvalid={formik.errors.name}
               value={formik.values.name}
               onChange={formik.handleChange}
               ref={inputRef}
             />
-            {formik.touched.name && formik.errors.name ? (
-              <div className="invalid-feedback">{t(`errors.${formik.errors.name}`)}</div>
-            ) : null}
-            <label className="visually-hidden" htmlFor="name">{t('modal.channelName')}</label>
-            <div className="d-flex justify-content-end">
+            <Form.Control.Feedback className="invalid-feedback">
+              {t(`errors.${formik.errors.name}`)}
+            </Form.Control.Feedback>
+            <Form.Label className="visually-hidden">{t('modal.channelName')}</Form.Label>
+            <Card.Body className="d-flex justify-content-end">
               <button type="button" className="me-2 btn btn-secondary" onClick={hideModal}>{uiState.modal.data.canselBtn}</button>
               <button type="submit" className="btn btn-primary">{uiState.modal.data.sentBtn}</button>
-            </div>
-          </div>
-        </form>
+            </Card.Body>
+          </Form.Group>
+
+        </Form>
       </Modal.Body>
     </>
   );

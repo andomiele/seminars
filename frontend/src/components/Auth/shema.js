@@ -1,13 +1,13 @@
 import * as Yup from 'yup';
 
-export const AuthSchema = Yup.object({
+export const authSchema = Yup.object({
   username: Yup.string()
     .required('required'),
   password: Yup.string()
     .required('required'),
 });
 
-export const SignupSchema = Yup.object({
+export const signupSchema = Yup.object({
   username: Yup.string()
     .min(3, 'symbolRange')
     .max(20, 'max')

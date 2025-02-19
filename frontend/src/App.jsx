@@ -10,16 +10,17 @@ import PrivateRoute from './misc/PrivateRoute.jsx';
 import Header from './components/Header/Header.jsx';
 import MainPage from './components/Main/MainPage.jsx';
 import ErrorPage from './components/NotFound/NotFoundPage.jsx';
+import { selectToastsError } from './redux/slices/selectorsUi.js';
 
 const App = () => {
   const { t } = useTranslation();
-  const ui = useSelector((state) => state.ui);
+  const error = useSelector(selectToastsError);
 
   useEffect(() => {
-    if (ui.error) {
-      toast.error(t(`toasts.${ui.error}`));
+    if (error) {
+      toast.error(t(`toasts.${error}`));
     }
-  }, [ui, t]);
+  }, [error, t]);
 
   return (
     <BrowserRouter>

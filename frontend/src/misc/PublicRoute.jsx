@@ -1,13 +1,14 @@
 import React from 'react';
 import { Outlet, Navigate, useLocation } from 'react-router';
 import { useSelector } from 'react-redux';
+import { selectIsAuth } from '../redux/slices/authSlice.js';
 
 const PublicRoute = () => {
   const location = useLocation();
-  const userAuth = useSelector((state) => state.auth.isAuth);
+  const isAuth = useSelector(selectIsAuth);
   const chatsPage = '/';
 
-  return userAuth ? <Navigate to={chatsPage} state={{ from: location }} /> : <Outlet />;
+  return isAuth ? <Navigate to={chatsPage} state={{ from: location }} /> : <Outlet />;
 };
 
 export default PublicRoute;
