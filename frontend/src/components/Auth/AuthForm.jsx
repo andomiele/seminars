@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Form, Image, Col } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
@@ -33,14 +33,17 @@ const AuthForm = () => {
       });
   };
 
+  const inputRef = useRef();
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       username: '',
       password: '',
     },
     validationSchema: authSchema,
-    validateOnChange: false,
-    validateOnBlur: false,
     onSubmit: handleSubmit,
   });
 
@@ -56,10 +59,12 @@ const AuthForm = () => {
             type="username"
             placeholder="Ваш ник"
             name="username"
+            ref={inputRef}
             className="form-control"
             isInvalid={!!authError}
             onChange={formik.handleChange}
             value={formik.values.username}
+            required
           />
           <Form.Label>{t('authForm.yourNickname')}</Form.Label>
         </Form.Group>
@@ -72,8 +77,11 @@ const AuthForm = () => {
             isInvalid={!!authError}
             onChange={formik.handleChange}
             value={formik.values.password}
+            required
           />
-          <div className="invalid-tooltip">{t(`errors.${authError}`)}</div>
+          <Form.Control.Feedback className="invalid-tooltip">
+            {t(`errors.${authError}`)}
+          </Form.Control.Feedback>
           <Form.Label>{t('authForm.password')}</Form.Label>
         </Form.Group>
         <button type="submit" className="w-100 mb-3 btn btn-outline-primary">

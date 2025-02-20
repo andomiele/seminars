@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Form, Image, Col } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
@@ -33,6 +33,11 @@ const SignupForm = () => {
       });
   };
 
+  const inputRef = useRef(null);
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -40,8 +45,6 @@ const SignupForm = () => {
       confirmPassword: '',
     },
     validationSchema: signupSchema,
-    validateOnChange: false,
-    validateOnBlur: false,
     onSubmit: handleSubmit,
   });
 
@@ -59,49 +62,51 @@ const SignupForm = () => {
         <h1 className="text-center mb-4">{t('signupForm.registration')}</h1>
         <Form.Group className="form-floating mb-3">
           <Form.Control
-            type="username"
-            placeholder="От 3 до 20 символов"
             name="username"
-            className="form-control"
-            isInvalid={formik.errors.username || !!authError}
+            required
+            placeholder={t('signUpForm.username')}
             onChange={formik.handleChange}
             value={formik.values.username}
+            ref={inputRef}
+            isInvalid={(formik.touched.username
+              && formik.errors.username) || !!authError}
+            onBlur={formik.handleBlur}
           />
-          {!authError && (
-            <Form.Control.Feedback className="invalid-tooltip">
-              {t(`errors.${extraErrors.username}`)}
-            </Form.Control.Feedback>
-          )}
+          <Form.Control.Feedback type="invalid" tooltip>
+            {t(`errors.${extraErrors.password}`)}
+          </Form.Control.Feedback>
           <Form.Label>{t('signupForm.userName')}</Form.Label>
         </Form.Group>
         <Form.Group className="form-floating mb-3">
           <Form.Control
             type="password"
-            placeholder="Не менее 6 символов"
             name="password"
-            className="form-control"
-            isInvalid={formik.errors.password || !!authError}
+            required
+            placeholder={t('loginForm.password')}
             onChange={formik.handleChange}
             value={formik.values.password}
+            isInvalid={(formik.touched.password
+              && formik.errors.password) || !!authError}
+            onBlur={formik.handleBlur}
           />
-          {!authError && (
-            <Form.Control.Feedback className="invalid-tooltip">
-              {t(`errors.${extraErrors.password}`)}
-            </Form.Control.Feedback>
-          )}
+          <Form.Control.Feedback type="invalid" tooltip>
+            {t(`errors.${extraErrors.password}`)}
+          </Form.Control.Feedback>
           <Form.Label>{t('signupForm.password')}</Form.Label>
         </Form.Group>
         <Form.Group className="form-floating mb-3">
           <Form.Control
             type="password"
-            placeholder="Пароли должны совпадать"
             name="confirmPassword"
-            className="form-control"
-            isInvalid={formik.errors.confirmPassword || !!authError}
+            required
+            placeholder={t('signUpForm.confirmPassword')}
             onChange={formik.handleChange}
             value={formik.values.confirmPassword}
+            isInvalid={(formik.touched.confirmPassword
+            && formik.errors.confirmPassword) || !!authError}
+            onBlur={formik.handleBlur}
           />
-          <Form.Control.Feedback className="invalid-tooltip">
+          <Form.Control.Feedback type="invalid" tooltip>
             {t(`errors.${extraErrors.confirmPassword}`)}
           </Form.Control.Feedback>
           <Form.Label>{t('signupForm.confirmPassword')}</Form.Label>
