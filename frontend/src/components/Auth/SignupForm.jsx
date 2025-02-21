@@ -21,11 +21,11 @@ const SignupForm = () => {
   const handleSubmit = async (values) => {
     await setUser(values)
       .then((response) => {
-        dispatch(clearErrorAction);
         dispatch(setAuth({
           username: response.data.username,
           token: response.data.token,
         }));
+        dispatch(clearErrorAction());
         navigate('/');
       })
       .catch((err) => {
