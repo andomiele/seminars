@@ -73,7 +73,7 @@ const SignupForm = () => {
             onBlur={formik.handleBlur}
           />
           <Form.Control.Feedback type="invalid" tooltip>
-            {t(`errors.${extraErrors.password}`)}
+            {t(`errors.${extraErrors.username}`)}
           </Form.Control.Feedback>
           <Form.Label>{t('signupForm.userName')}</Form.Label>
         </Form.Group>
