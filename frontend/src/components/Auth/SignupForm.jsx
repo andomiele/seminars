@@ -72,10 +72,12 @@ const SignupForm = () => {
               && formik.errors.username) || !!authError}
             onBlur={formik.handleBlur}
           />
-          <Form.Control.Feedback type="invalid" tooltip>
-            {t(`errors.${extraErrors.username}`)}
-          </Form.Control.Feedback>
           <Form.Label>{t('signupForm.userName')}</Form.Label>
+          {!authError && (
+            <Form.Control.Feedback type="invalid" tooltip>
+              {t(`errors.${extraErrors.username}`)}
+            </Form.Control.Feedback>
+          )}
         </Form.Group>
         <Form.Group className="form-floating mb-3">
           <Form.Control
@@ -89,10 +91,12 @@ const SignupForm = () => {
               && formik.errors.password) || !!authError}
             onBlur={formik.handleBlur}
           />
-          <Form.Control.Feedback type="invalid" tooltip>
-            {t(`errors.${extraErrors.password}`)}
-          </Form.Control.Feedback>
           <Form.Label>{t('signupForm.password')}</Form.Label>
+          {!authError && (
+            <Form.Control.Feedback type="invalid" tooltip>
+              {t(`errors.${extraErrors.password}`)}
+            </Form.Control.Feedback>
+          )}
         </Form.Group>
         <Form.Group className="form-floating mb-4">
           <Form.Control
@@ -106,10 +110,10 @@ const SignupForm = () => {
             && formik.errors.confirmPassword) || !!authError}
             onBlur={formik.handleBlur}
           />
+          <Form.Label>{t('signupForm.confirmPassword')}</Form.Label>
           <Form.Control.Feedback type="invalid" tooltip>
             {t(`errors.${extraErrors.confirmPassword}`)}
           </Form.Control.Feedback>
-          <Form.Label>{t('signupForm.confirmPassword')}</Form.Label>
         </Form.Group>
         <button type="submit" className="w-100 btn btn-outline-primary">
           {t('signupForm.signup')}
