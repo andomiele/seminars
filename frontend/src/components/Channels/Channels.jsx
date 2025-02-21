@@ -23,7 +23,7 @@ const Channels = () => {
         <li className="nav-item w-100" key={channel.id}>
           <button
             type="button"
-            className={`w-100 rounded-0 text-start btn ${channel.id && channel.id === currentChanel.id ? 'btn-secondary' : ''}`}
+            className={`w-100 rounded-0 text-start text-truncate btn ${channel.id && channel.id === currentChanel.id ? 'btn-secondary' : ''}`}
             onClick={() => dispatch(setChannel(channel))}
           >
             <span className="me-1">#</span>
