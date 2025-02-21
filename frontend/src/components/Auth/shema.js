@@ -10,7 +10,7 @@ export const authSchema = Yup.object().shape({
 export const signupSchema = Yup.object().shape({
   username: Yup.string()
     .min(3, 'symbolRange')
-    .max(20, 'max')
+    .max(20, 'symbolRange')
     .required('required'),
   password: Yup.string()
     .min(6, 'sixSymbols')
