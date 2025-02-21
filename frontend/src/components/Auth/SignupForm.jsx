@@ -63,6 +63,8 @@ const SignupForm = () => {
         <Form.Group className="form-floating mb-3">
           <Form.Control
             name="username"
+            type="username"
+            id="username"
             required
             placeholder={t('signUpForm.username')}
             onChange={formik.handleChange}
@@ -72,17 +74,18 @@ const SignupForm = () => {
               && formik.errors.username) || !!authError}
             onBlur={formik.handleBlur}
           />
-          <Form.Label>{t('signupForm.userName')}</Form.Label>
           {!authError && (
             <Form.Control.Feedback type="invalid" tooltip>
               {t(`errors.${extraErrors.username}`)}
             </Form.Control.Feedback>
           )}
+          <Form.Label htmlFor="username">{t('signupForm.userName')}</Form.Label>
         </Form.Group>
         <Form.Group className="form-floating mb-3">
           <Form.Control
             type="password"
             name="password"
+            id="password"
             required
             placeholder={t('loginForm.password')}
             onChange={formik.handleChange}
@@ -91,17 +94,18 @@ const SignupForm = () => {
               && formik.errors.password) || !!authError}
             onBlur={formik.handleBlur}
           />
-          <Form.Label>{t('signupForm.password')}</Form.Label>
           {!authError && (
             <Form.Control.Feedback type="invalid" tooltip>
               {t(`errors.${extraErrors.password}`)}
             </Form.Control.Feedback>
           )}
+          <Form.Label htmlFor="password">{t('signupForm.password')}</Form.Label>
         </Form.Group>
         <Form.Group className="form-floating mb-4">
           <Form.Control
             type="password"
             name="confirmPassword"
+            id="confirmPassword"
             required
             placeholder={t('signUpForm.confirmPassword')}
             onChange={formik.handleChange}
@@ -110,10 +114,10 @@ const SignupForm = () => {
             && formik.errors.confirmPassword) || !!authError}
             onBlur={formik.handleBlur}
           />
-          <Form.Label>{t('signupForm.confirmPassword')}</Form.Label>
           <Form.Control.Feedback type="invalid" tooltip>
             {t(`errors.${extraErrors.confirmPassword}`)}
           </Form.Control.Feedback>
+          <Form.Label htmlFor="confirmPassword">{t('signupForm.confirmPassword')}</Form.Label>
         </Form.Group>
         <button type="submit" className="w-100 btn btn-outline-primary">
           {t('signupForm.signup')}
