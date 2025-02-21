@@ -81,7 +81,7 @@ const SignupForm = () => {
           <Form.Control
             type="password"
             name="password"
-            required
+            // required
             placeholder={t('loginForm.password')}
             onChange={formik.handleChange}
             value={formik.values.password}
@@ -98,7 +98,7 @@ const SignupForm = () => {
           <Form.Control
             type="password"
             name="confirmPassword"
-            required
+            // required
             placeholder={t('signUpForm.confirmPassword')}
             onChange={formik.handleChange}
             value={formik.values.confirmPassword}
