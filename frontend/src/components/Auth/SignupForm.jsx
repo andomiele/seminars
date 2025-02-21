@@ -55,10 +55,10 @@ const SignupForm = () => {
 
   return (
     <>
-      <Col className="col-12 col-md-6 d-flex align-items-center justify-content-center">
+      <Col>
         <Image src={avatarSignup} roundedCircle alt="Регистрация" />
       </Col>
-      <Form className="col-12 col-md-6 mt-3 mt-md-0" onSubmit={formik.handleSubmit}>
+      <Form className="w-50" onSubmit={formik.handleSubmit}>
         <h1 className="text-center mb-4">{t('signupForm.registration')}</h1>
         <Form.Group className="form-floating mb-3">
           <Form.Control
@@ -94,7 +94,7 @@ const SignupForm = () => {
           </Form.Control.Feedback>
           <Form.Label>{t('signupForm.password')}</Form.Label>
         </Form.Group>
-        <Form.Group className="form-floating mb-3">
+        <Form.Group className="form-floating mb-4">
           <Form.Control
             type="password"
             name="confirmPassword"
@@ -111,7 +111,7 @@ const SignupForm = () => {
           </Form.Control.Feedback>
           <Form.Label>{t('signupForm.confirmPassword')}</Form.Label>
         </Form.Group>
-        <button type="submit" className="w-100 mb-3 btn btn-outline-primary">
+        <button type="submit" className="w-100 btn btn-outline-primary">
           {t('signupForm.signup')}
         </button>
       </Form>

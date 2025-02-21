@@ -18,7 +18,7 @@ const AuthPage = () => {
             <Card.Body className="card-body row p-5">
               <AuthForm />
             </Card.Body>
-            <Card.Footer className="card-footer p-4">
+            <Card.Footer className="p-4">
               <Card.Text className="text-center">
                 <span>{t('authForm.dontHaveAccount')}</span>
                 {' '}

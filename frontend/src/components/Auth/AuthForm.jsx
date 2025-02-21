@@ -68,7 +68,7 @@ const AuthForm = () => {
           />
           <Form.Label>{t('authForm.yourNickname')}</Form.Label>
         </Form.Group>
-        <Form.Group className="form-floating mb-3">
+        <Form.Group className="form-floating mb-4">
           <Form.Control
             type="password"
             placeholder="Пароль"
