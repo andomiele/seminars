@@ -56,6 +56,7 @@ const AddChannelModal = ({ uiState, hideModal }) => {
           <Form.Group>
             <Form.Control
               name="name"
+              id="name"
               placeholder=""
               className="mb-2 form-control"
               isInvalid={formik.errors.name}
@@ -66,7 +67,7 @@ const AddChannelModal = ({ uiState, hideModal }) => {
             <Form.Control.Feedback className="invalid-feedback">
               {t(`errors.${formik.errors.name}`)}
             </Form.Control.Feedback>
-            <Form.Label className="visually-hidden">{t('modal.channelName')}</Form.Label>
+            <Form.Label className="visually-hidden" htmlFor="name">{t('modal.channelName')}</Form.Label>
             <Card.Body className="d-flex justify-content-end">
               <button type="button" className="me-2 btn btn-secondary" onClick={hideModal}>{uiState.modal.data.canselBtn}</button>
               <button type="submit" className="btn btn-primary">{uiState.modal.data.sentBtn}</button>

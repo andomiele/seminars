@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Form, Card } from 'react-bootstrap';
 import { ArrowRightSquare } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';
 import { useAddMessageMutation } from '../../services/messagesApi.js';
@@ -23,10 +24,10 @@ const ChatForm = ({ currentChanel, userName }) => {
   const handleUpdateNewMessageText = (e) => setText(e.target.value);
 
   return (
-    <div className="mt-auto px-5 py-3">
-      <form noValidate="" className="py-1 border rounded-2" onSubmit={handleAddMessage}>
-        <div className="input-group has-validation">
-          <input
+    <Card className="mt-auto px-5 py-3">
+      <Form noValidate="" className="py-1 border rounded-2" onSubmit={handleAddMessage}>
+        <Form.Group className="input-group has-validation">
+          <Form.Control
             ref={inputRef}
             name="body"
             aria-label="Новое сообщение"
@@ -39,9 +40,9 @@ const ChatForm = ({ currentChanel, userName }) => {
             <ArrowRightSquare size={20} />
             <span className="visually-hidden">{t('chat.sent')}</span>
           </button>
-        </div>
-      </form>
-    </div>
+        </Form.Group>
+      </Form>
+    </Card>
   );
 };
 

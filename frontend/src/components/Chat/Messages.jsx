@@ -12,11 +12,7 @@ const Messages = ({ currentMessages }) => {
   return (
     <div id="messages-box" className="chat-messages overflow-auto px-5 ">
       {currentMessages.map((message) => (
-        <div
-          className="text-break mb-2"
-          key={message.id}
-          ref={inputRef}
-        >
+        <div className="text-break mb-2" key={message.id} ref={inputRef}>
           <b>{message.username}</b>
           {': '}
           { leoProfanity.clean(message.body)}

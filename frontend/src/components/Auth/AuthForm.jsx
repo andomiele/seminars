@@ -57,6 +57,7 @@ const AuthForm = () => {
         <Form.Group className="form-floating mb-3">
           <Form.Control
             type="username"
+            id="username"
             placeholder="Ваш ник"
             name="username"
             ref={inputRef}
@@ -66,11 +67,12 @@ const AuthForm = () => {
             value={formik.values.username}
             required
           />
-          <Form.Label>{t('authForm.yourNickname')}</Form.Label>
+          <Form.Label htmlFor="username">{t('authForm.yourNickname')}</Form.Label>
         </Form.Group>
         <Form.Group className="form-floating mb-4">
           <Form.Control
             type="password"
+            id="password"
             placeholder="Пароль"
             name="password"
             className="form-control"
@@ -82,7 +84,7 @@ const AuthForm = () => {
           <Form.Control.Feedback className="invalid-tooltip">
             {t(`errors.${authError}`)}
           </Form.Control.Feedback>
-          <Form.Label>{t('authForm.password')}</Form.Label>
+          <Form.Label htmlFor="password">{t('authForm.password')}</Form.Label>
         </Form.Group>
         <button type="submit" className="w-100 mb-3 btn btn-outline-primary">
           {t('authForm.login')}
