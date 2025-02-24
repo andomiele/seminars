@@ -17,6 +17,35 @@ const Channels = () => {
     return <Spinner />;
   }
 
+  const setRemovingModalInfo = (channel) => {
+    dispatch(showModalInfo({
+      isVisible: true,
+      type: 'removing',
+      data: {
+        title: t('modal.deleteChannel'),
+        question: t('modal.confirmation'),
+        canselBtn: t('modal.canselBtn'),
+        deletelBtn: t('modal.deleteBtn'),
+        name: channel.name,
+        id: channel.id,
+      },
+    }));
+  };
+
+  const setEditingModalInfo = (channel) => {
+    dispatch(showModalInfo({
+      isVisible: true,
+      type: 'editing',
+      data: {
+        title: t('modal.editChannel'),
+        sentBtn: t('modal.sentBtn'),
+        canselBtn: t('modal.canselBtn'),
+        name: channel.name,
+        id: channel.id,
+      },
+    }));
+  };
+
   return (
     <ul id="channels-box" className="nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block">
       {channels.map((channel) => (
@@ -42,35 +71,10 @@ const Channels = () => {
                   </span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item
-                    onClick={() => dispatch(showModalInfo({
-                      isVisible: true,
-                      type: 'removing',
-                      data: {
-                        title: t('modal.deleteChannel'),
-                        question: t('modal.confirmation'),
-                        canselBtn: t('modal.canselBtn'),
-                        deletelBtn: t('modal.deleteBtn'),
-                        name: channel.name,
-                        id: channel.id,
-                      },
-                    }))}
-                  >
+                  <Dropdown.Item onClick={() => setRemovingModalInfo(channel)}>
                     {t('channelMenu.delete')}
                   </Dropdown.Item>
-                  <Dropdown.Item
-                    onClick={() => dispatch(showModalInfo({
-                      isVisible: true,
-                      type: 'editing',
-                      data: {
-                        title: t('modal.editChannel'),
-                        sentBtn: t('modal.sentBtn'),
-                        canselBtn: t('modal.canselBtn'),
-                        name: channel.name,
-                        id: channel.id,
-                      },
-                    }))}
-                  >
+                  <Dropdown.Item onClick={() => setEditingModalInfo(channel)}>
                     {t('channelMenu.rename')}
                   </Dropdown.Item>
                 </Dropdown.Menu>

@@ -14,15 +14,10 @@ const DeleteChannelModal = ({ uiState, hideModal }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const handleSubmit = async () => {
-    await deleteChannel({ id: uiState.modal.data.id })
-      .then(() => {
-        dispatch(setChannel(defaultChannel));
-        hideModal();
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+  const handleSubmit = () => {
+    deleteChannel({ id: uiState.modal.data.id });
+    hideModal();
+    dispatch(setChannel(defaultChannel));
   };
 
   useEffect(() => {
