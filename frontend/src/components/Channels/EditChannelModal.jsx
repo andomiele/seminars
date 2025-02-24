@@ -17,8 +17,7 @@ const EditChannelModal = ({ uiState, hideModal }) => {
 
   const inputRef = useRef();
   useEffect(() => {
-    const any = inputRef.current;
-    return any.focus();
+    inputRef.current.select();
   }, []);
 
   useEffect(() => {

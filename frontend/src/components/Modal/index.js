@@ -5,7 +5,7 @@ import DeleteChannelModal from '../Channels/DeleteChannelModal';
 const modals = {
   adding: AddChannelModal,
   removing: DeleteChannelModal,
-  renaming: EditChannelModal,
+  editing: EditChannelModal,
 };
 
 export default (modalName) => modals[modalName];

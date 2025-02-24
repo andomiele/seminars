@@ -26,8 +26,7 @@ export const { setAuth } = authSlice.actions;
 
 const selectAuth = (state) => state.auth;
 
-export const selectIsAuth = createSelector(selectAuth, ((auth) => auth.token));
+export const selectIsAuth = createSelector(selectAuth, ((auth) => Boolean(auth.token)));
 export const selectUsername = createSelector(selectAuth, ((auth) => auth.username));
-// Добавить селекторы
 
 export default authSlice.reducer;

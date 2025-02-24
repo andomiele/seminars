@@ -61,7 +61,7 @@ const Channels = () => {
                   <Dropdown.Item
                     onClick={() => dispatch(showModalInfo({
                       isVisible: true,
-                      type: 'renaming',
+                      type: 'editing',
                       data: {
                         title: t('modal.editChannel'),
                         sentBtn: t('modal.sentBtn'),
