@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import avatar from '../../assets/avatar.jpg';
 import { authSchema } from './shema.js';
 import { setAuth } from '../../redux/slices/authSlice.js';
-import { useGetAuthMutation } from '../../services/authApi.js';
+import { useLoginMutation } from '../../services/authApi.js';
 import { clearErrorAction } from '../../redux/slices/uiSlice.js';
 import { selectAuthError } from '../../redux/slices/selectorsUi.js';
 
@@ -15,7 +15,7 @@ const AuthForm = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [getAuth] = useGetAuthMutation();
+  const [getAuth] = useLoginMutation();
   const authError = useSelector(selectAuthError);
 
   const handleSubmit = async (values) => {

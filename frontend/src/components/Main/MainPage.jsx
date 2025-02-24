@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import AddChannelBtn from '../Buttons/AddChannelBtn.jsx';
-import Channels from '../Channels/Channels.jsx';
+import Channels from '../Channels/index.jsx';
 import Chat from '../Chat/index.jsx';
 import BaseModal from '../Modal/BaseModal.jsx';
 import { selectIsAuth } from '../../redux/slices/authSlice.js';

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import avatarSignup from '../../assets/avatarSignup.jpg';
 import { signupSchema } from './shema.js';
 import { setAuth } from '../../redux/slices/authSlice.js';
-import { useSetUserMutation } from '../../services/authApi.js';
+import { useSignupMutation } from '../../services/authApi.js';
 import { clearErrorAction } from '../../redux/slices/uiSlice.js';
 import { selectAuthError } from '../../redux/slices/selectorsUi.js';
 
@@ -15,7 +15,7 @@ const SignupForm = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [setUser] = useSetUserMutation();
+  const [setUser] = useSignupMutation();
   const authError = useSelector(selectAuthError);
 
   const handleSubmit = async (values) => {

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { prepareHeaders } from './prepareHeaders';
+import { prepareHeaders } from './helpers';
 import { ROUT_CHANNELS, getRoute } from './apiConfig';
 
 const baseQuery = fetchBaseQuery({
@@ -31,7 +31,6 @@ export const channelsApi = createApi({
         method: 'PATCH',
         body: channel,
       }),
-      keepUnusedDataFor: 1,
       invalidatesTags: ['Channels'],
     }),
     deleteChannel: builder.mutation({

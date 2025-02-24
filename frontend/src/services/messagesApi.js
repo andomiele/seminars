@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { prepareHeaders } from './prepareHeaders';
+import { prepareHeaders } from './helpers';
 import { ROUT_MESSAGES, getRoute } from './apiConfig';
 
 const baseQuery = fetchBaseQuery({

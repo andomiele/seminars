@@ -30,8 +30,8 @@ const clearErrorEndpoints = [
   channelsApi.endpoints.getСhannels.matchPending,
   messagesApi.endpoints.getMessages.matchPending,
   messagesApi.endpoints.addMessage.matchPending,
-  usersApi.endpoints.getAuth.matchPending,
-  usersApi.endpoints.setUser.matchPending,
+  usersApi.endpoints.login.matchPending,
+  usersApi.endpoints.signup.matchPending,
 ];
 
 const setErrorEndpoints = [
@@ -41,8 +41,8 @@ const setErrorEndpoints = [
   channelsApi.endpoints.getСhannels.matchRejected,
   messagesApi.endpoints.getMessages.matchRejected,
   messagesApi.endpoints.addMessage.matchRejected,
-  usersApi.endpoints.getAuth.matchRejected,
-  usersApi.endpoints.setUser.matchRejected,
+  usersApi.endpoints.login.matchRejected,
+  usersApi.endpoints.signup.matchRejected,
 ];
 
 const uiSlice = createSlice({
