@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Modal, Form, Card } from 'react-bootstrap';
 import { useFormik } from 'formik';
@@ -9,7 +9,7 @@ import { DEFAUL_CHANNEL } from '../../redux/slices/constants.js';
 import { addCurrentChannel } from '../../redux/slices/uiSlice.js';
 
 const DeleteChannelModal = ({ uiState, hideModal }) => {
-  const [deleteChannel, { isSuccess }] = useDeleteChannelMutation();
+  const [deleteChannel] = useDeleteChannelMutation();
   const { data: channels = [] } = useGetСhannelsQuery();
   const defaultChannel = channels.find((channel) => channel.id === DEFAUL_CHANNEL);
   const dispatch = useDispatch();
@@ -18,14 +18,9 @@ const DeleteChannelModal = ({ uiState, hideModal }) => {
   const handleSubmit = () => {
     deleteChannel({ id: uiState.modal.data.id });
     hideModal();
+    toast.success(t('toasts.channelDeteted'));
     dispatch(addCurrentChannel(defaultChannel));
   };
-
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success(t('toasts.channelDeteted'));
-    }
-  }, [isSuccess, t]);
 
   const formik = useFormik({
     initialValues: { name: uiState.modal.data.name },
