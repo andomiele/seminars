@@ -2,9 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dropdown, Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { showModalInfo } from '../../redux/slices/uiSlice.js';
+import { showModalInfo, addCurrentChannel } from '../../redux/slices/uiSlice.js';
 import { useGetСhannelsQuery } from '../../services/channelsApi.js';
-import { setChannel, selectCurrentChannel } from '../../redux/slices/channelsSlice.js';
+import { selectCurrentChannel } from '../../redux/slices/selectorsUi.js';
 import Spinner from '../Spinner/Spinner.jsx';
 
 const Channels = () => {
@@ -54,7 +54,7 @@ const Channels = () => {
             <button
               type="button"
               className={`w-100 rounded-0 text-start text-truncate btn ${channel.id && channel.id === currentChanel.id ? 'btn-secondary' : ''}`}
-              onClick={() => dispatch(setChannel(channel))}
+              onClick={() => dispatch(addCurrentChannel(channel))}
             >
               <span className="me-1">#</span>
               {channel.name}

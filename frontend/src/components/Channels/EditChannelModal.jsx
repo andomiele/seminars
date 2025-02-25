@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import leoProfanity from 'leo-profanity';
 import { useEditChannelMutation, useGetСhannelsQuery } from '../../services/channelsApi.js';
 import channelSchema from './shema.js';
-import { setChannel } from '../../redux/slices/channelsSlice.js';
+import { addCurrentChannel } from '../../redux/slices/uiSlice.js';
 
 const EditChannelModal = ({ uiState, hideModal }) => {
   const [editChannel, { isSuccess, data }] = useEditChannelMutation();
@@ -30,7 +30,7 @@ const EditChannelModal = ({ uiState, hideModal }) => {
     const newChannelName = leoProfanity.clean(values.name.trim());
     editChannel({ id: uiState.modal.data.id, name: newChannelName });
     hideModal();
-    dispatch(setChannel(data));
+    dispatch(addCurrentChannel(data));
   };
 
   const channelsName = channels.map((channel) => channel.name);
