@@ -52,8 +52,8 @@ const init = async (socket) => {
 
   const listenerRemoveChannel = (payload) => {
     const state = store.getState();
-    if (state.channel.id === payload.id) {
-      store.dispatch(addCurrentChannel(state.channel));
+    if (state.ui.channel.id === payload.id) {
+      store.dispatch(addCurrentChannel(state.ui.channel));
     }
     store.dispatch(
       channelsApi.util.updateQueryData(

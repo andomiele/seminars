@@ -56,7 +56,7 @@ const uiSlice = createSlice({
   reducers: {
     showModalInfo: (state, { payload }) => {
       Object.assign(state.modal, {
-        ...initialState,
+        ...initialState.modal,
         isVisible: true,
         type: payload.type,
         data: payload.data,

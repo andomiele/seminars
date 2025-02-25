@@ -10,7 +10,7 @@ import channelSchema from './shema.js';
 import { addCurrentChannel } from '../../redux/slices/uiSlice.js';
 
 const AddChannelModal = ({ uiState, hideModal }) => {
-  const [addChannel, { data }] = useAddChannelMutation();
+  const [addChannel] = useAddChannelMutation();
   const { data: channels = [] } = useGetСhannelsQuery();
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -22,10 +22,10 @@ const AddChannelModal = ({ uiState, hideModal }) => {
 
   const handleSubmit = (values) => {
     const channelName = leoProfanity.clean(values.name.trim());
-    addChannel({ name: channelName });
+    addChannel({ name: channelName })
+      .then((response) => dispatch(addCurrentChannel(response.data)));
     hideModal();
     toast.success(t('toasts.сhannelAdded'));
-    dispatch(addCurrentChannel(data));
   };
 
   const channelsName = channels.map((channel) => channel.name);
