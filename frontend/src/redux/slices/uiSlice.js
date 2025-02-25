@@ -13,6 +13,11 @@ const initialState = {
     type: null,
     data: null,
   },
+  channel: {
+    id: '1',
+    name: 'general',
+    removable: false,
+  },
 };
 
 const clearError = (state) => {
@@ -57,11 +62,18 @@ const uiSlice = createSlice({
         data: payload.data,
       });
     },
-
     hideModalInfo: (state) => {
       state.modal = initialState.modal;
     },
     clearError,
+    addCurrentChannel: (state, { payload }) => {
+      Object.assign(state.channel, {
+        ...initialState.channel,
+        id: payload.id,
+        name: payload.name,
+        removable: payload.removable,
+      });
+    },
   },
   extraReducers: (builder) => {
     clearErrorEndpoints.forEach((endpoint) => {
@@ -77,6 +89,7 @@ export const {
   showModalInfo,
   hideModalInfo,
   clearError: clearErrorAction,
+  addCurrentChannel,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

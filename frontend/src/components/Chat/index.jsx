@@ -6,7 +6,7 @@ import ChatForm from './ChatForm';
 import ChatHeader from './ChatHeader';
 import Messages from './Messages';
 import { selectUsername } from '../../redux/slices/authSlice.js';
-import { selectCurrentChannel } from '../../redux/slices/channelsSlice.js';
+import { selectCurrentChannel } from '../../redux/slices/selectorsUi.js';
 
 const Chat = () => {
   const { data: messages = [], isLoading } = useGetMessagesQuery();
