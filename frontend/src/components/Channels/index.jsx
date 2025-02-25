@@ -46,6 +46,10 @@ const Channels = () => {
     }));
   };
 
+  const addChannel = (channel) => {
+    dispatch(addCurrentChannel(channel));
+  };
+
   return (
     <ul id="channels-box" className="nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block">
       {channels.map((channel) => (
@@ -53,8 +57,8 @@ const Channels = () => {
           <Container className="d-flex show dropdown btn-group">
             <button
               type="button"
-              className={`w-100 rounded-0 text-start text-truncate btn ${channel.id && channel.id === currentChanel.id ? 'btn-secondary' : ''}`}
-              onClick={() => dispatch(addCurrentChannel(channel))}
+              className={`w-100 rounded-0 text-start text-truncate btn ${channel.id === currentChanel.id ? 'btn-secondary' : ''}`}
+              onClick={() => addChannel(channel)}
             >
               <span className="me-1">#</span>
               {channel.name}
