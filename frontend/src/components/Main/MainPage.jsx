@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import Channels from '../Channels/index.jsx';
 import Chat from '../Chat/index.jsx';
-import BaseModal from '../Modal/BaseModal.jsx';
 import { selectIsAuth } from '../../redux/slices/authSlice.js';
 
 const MainPage = () => {
@@ -14,7 +13,6 @@ const MainPage = () => {
   return (
     !isAuth ? navigate('/login') : (
       <Container className="container h-100 my-4 overflow-hidden rounded shadow">
-        <BaseModal />
         <Row className="row h-100 bg-white flex-md-row">
           <Col className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
             <Channels />

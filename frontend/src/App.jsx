@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router';
 import { ToastContainer as Toaster, Zoom, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import BaseModal from './components/Modal/BaseModal.jsx';
 import AuthPage from './components/Auth/AuthPage.jsx';
 import SignupPage from './components/Auth/SignupPage.jsx';
 import PublicRoute from './misc/PublicRoute.jsx';
@@ -24,6 +25,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <BaseModal />
       <div className="d-flex flex-column h-100">
         <Header />
         <Routes>
