@@ -5,7 +5,7 @@ const selectUi = (state) => state.ui;
 
 const selectError = createSelector(selectUi, ((state) => state.error));
 
-export const selectCurrentChannel = createSelector(selectUi, ((state) => state.channel));
+export const selectCurrentChannelId = createSelector(selectUi, ((state) => state.channel));
 
 export const selectToastsError = createSelector(selectError, (error) => (
   error.status !== UNAUTHORIZED_ERROR && error.status !== CONFLICT_ERROR ? error.status : null));

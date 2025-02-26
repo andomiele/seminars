@@ -5,14 +5,14 @@ import { useTranslation } from 'react-i18next';
 import { PlusSquare } from 'react-bootstrap-icons';
 import { showModalInfo, addCurrentChannel } from '../../redux/slices/uiSlice.js';
 import { useGetСhannelsQuery } from '../../services/channelsApi.js';
-import { selectCurrentChannel } from '../../redux/slices/selectorsUi.js';
+import { selectCurrentChannelId } from '../../redux/slices/selectorsUi.js';
 import Spinner from '../Spinner/Spinner.jsx';
 
 const Channels = () => {
   const { data: channels = [], isLoading } = useGetСhannelsQuery();
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const currentChanel = useSelector(selectCurrentChannel);
+  const currentChanel = useSelector(selectCurrentChannelId);
 
   if (isLoading) {
     return <Spinner />;
@@ -81,7 +81,7 @@ const Channels = () => {
               <button
                 type="button"
                 onClick={() => dispatch(addCurrentChannel(channel))}
-                className={`w-100 rounded-0 text-start text-truncate btn ${channel.id && channel.id === currentChanel.id ? 'btn-secondary' : ''}`}
+                className={`w-100 rounded-0 text-start text-truncate btn ${channel.id && channel.id === currentChanel ? 'btn-secondary' : ''}`}
               >
                 <span className="me-1">#</span>
                 {channel.name}

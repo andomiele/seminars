@@ -1,4 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createSelector } from '@reduxjs/toolkit';
+import { selectCurrentChannelId } from '../redux/slices/selectorsUi';
 import { prepareHeaders } from './helpers';
 import { ROUT_CHANNELS, getRoute } from './apiConfig';
 
@@ -8,7 +10,7 @@ const baseQuery = fetchBaseQuery({
 });
 
 export const channelsApi = createApi({
-  reducerPath: 'channels',
+  reducerPath: 'channelsApi',
   baseQuery,
   tagTypes: ['Channels', 'Messages'],
   endpoints: (builder) => ({
@@ -22,7 +24,6 @@ export const channelsApi = createApi({
         method: 'POST',
         body: channel,
       }),
-      invalidatesTags: ['Channels'],
     }),
     editChannel: builder.mutation({
       query: ({ id, ...channel }) => ({
@@ -30,17 +31,35 @@ export const channelsApi = createApi({
         method: 'PATCH',
         body: channel,
       }),
-      invalidatesTags: ['Channels'],
     }),
     deleteChannel: builder.mutation({
       query: ({ id }) => ({
         method: 'DELETE',
         url: id,
+        invalidatesTags: ['Channels', 'Messages'],
       }),
-      invalidatesTags: ['Channels', 'Messages'],
     }),
   }),
 });
+
+const selectChannels = channelsApi.endpoints.getСhannels.select();
+
+const selectChannelsData = createSelector(
+  selectChannels,
+  (channelsState) => channelsState.data ?? [],
+);
+
+export const selectChannelsNames = createSelector(
+  selectChannelsData,
+  (channels) => channels.map(({ name }) => name),
+);
+
+export const selectCurrentChannel = createSelector(
+  [selectChannelsData, selectCurrentChannelId],
+  (channels, currentChannelId) => (
+    channels.find((channel) => channel.id === currentChannelId) || null
+  ),
+);
 
 export const {
   useGetСhannelsQuery,

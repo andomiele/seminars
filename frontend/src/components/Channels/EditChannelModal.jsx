@@ -20,9 +20,9 @@ const EditChannelModal = ({ uiState, hideModal }) => {
     inputRef.current.select();
   }, []);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     const newChannelName = leoProfanity.clean(values.name.trim());
-    editChannel({ id: uiState.modal.data.id, name: newChannelName });
+    await editChannel({ id: uiState.modal.data.id, name: newChannelName });
     hideModal();
     toast.success(t('toasts.сhannelEdited'));
     dispatch(addCurrentChannel(data));

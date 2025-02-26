@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { channelsApi } from '../../services/channelsApi';
 import { messagesApi } from '../../services/messagesApi';
 import { usersApi } from '../../services/authApi';
+import { DEFAUL_CHANNEL } from './constants';
 
 const initialState = {
   error: {
@@ -14,8 +15,8 @@ const initialState = {
     data: null,
   },
   channel: {
-    id: '1',
-    name: 'general',
+    id: DEFAUL_CHANNEL,
+    name: '',
     removable: false,
   },
 };
@@ -31,7 +32,7 @@ const setError = (state, { payload }) => {
 const clearErrorEndpoints = [
   channelsApi.endpoints.addChannel.matchPending,
   channelsApi.endpoints.editChannel.matchPending,
-  channelsApi.endpoints.addChannel.matchPending,
+  channelsApi.endpoints.deleteChannel.matchPending,
   channelsApi.endpoints.getСhannels.matchPending,
   messagesApi.endpoints.getMessages.matchPending,
   messagesApi.endpoints.addMessage.matchPending,
