@@ -22,7 +22,6 @@ export const channelsApi = createApi({
         method: 'POST',
         body: channel,
       }),
-      keepUnusedDataFor: 1,
       invalidatesTags: ['Channels'],
     }),
     editChannel: builder.mutation({

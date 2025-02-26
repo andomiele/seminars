@@ -22,7 +22,6 @@ export const messagesApi = createApi({
         method: 'POST',
         body,
       }),
-      keepUnusedDataFor: 1,
       providesTags: ['Messages'],
     }),
   }),
