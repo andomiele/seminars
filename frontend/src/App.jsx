@@ -12,6 +12,12 @@ import Header from './components/Header/Header.jsx';
 import MainPage from './components/Main/MainPage.jsx';
 import ErrorPage from './components/NotFound/NotFoundPage.jsx';
 import { selectToastsError } from './redux/slices/selectorsUi.js';
+import {
+  PAGE_MAIN,
+  PAGE_LOGIN,
+  PAGE_SIGNUP,
+  PAGE_NOT_FOUND,
+} from './components/configs/configRouts.js';
 
 const App = () => {
   const { t } = useTranslation();
@@ -30,12 +36,12 @@ const App = () => {
         <Header />
         <Routes>
           <Route element={<PublicRoute />}>
-            <Route path="/login" element={<AuthPage />} />
-            <Route path="/signup" element={<SignupPage />} />
-            <Route path="*" element={<ErrorPage />} />
+            <Route path={PAGE_LOGIN} element={<AuthPage />} />
+            <Route path={PAGE_SIGNUP} element={<SignupPage />} />
+            <Route path={PAGE_NOT_FOUND} element={<ErrorPage />} />
           </Route>
           <Route element={<PrivateRoute />}>
-            <Route path="/" element={<MainPage />} />
+            <Route path={PAGE_MAIN} element={<MainPage />} />
           </Route>
         </Routes>
       </div>
