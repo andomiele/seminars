@@ -17,6 +17,7 @@ import {
   PAGE_LOGIN,
   PAGE_SIGNUP,
   PAGE_NOT_FOUND,
+  getPage,
 } from './components/configs/configRouts.js';
 
 const App = () => {
@@ -36,12 +37,12 @@ const App = () => {
         <Header />
         <Routes>
           <Route element={<PublicRoute />}>
-            <Route path={PAGE_LOGIN} element={<AuthPage />} />
-            <Route path={PAGE_SIGNUP} element={<SignupPage />} />
-            <Route path={PAGE_NOT_FOUND} element={<ErrorPage />} />
+            <Route path={getPage(PAGE_LOGIN)} element={<AuthPage />} />
+            <Route path={getPage(PAGE_SIGNUP)} element={<SignupPage />} />
+            <Route path={getPage(PAGE_NOT_FOUND)} element={<ErrorPage />} />
           </Route>
           <Route element={<PrivateRoute />}>
-            <Route path={PAGE_MAIN} element={<MainPage />} />
+            <Route path={getPage(PAGE_MAIN)} element={<MainPage />} />
           </Route>
         </Routes>
       </div>
