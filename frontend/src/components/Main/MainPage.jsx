@@ -18,9 +18,7 @@ const MainPage = () => {
             <Channels />
           </Col>
           <Col className="col p-0 h-100">
-            <div className="d-flex flex-column h-100">
-              <Chat />
-            </div>
+            <Chat />
           </Col>
         </Row>
       </Container>
