@@ -77,7 +77,7 @@ const Channels = () => {
       <ul id="channels-box" className="nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block">
         {channels.map((channel) => (
           <li className="nav-item w-100" key={channel.id}>
-            <Container className="d-flex show dropdown btn-group">
+            <div className="d-flex show dropdown btn-group">
               <button
                 type="button"
                 onClick={() => dispatch(addCurrentChannel(channel))}
@@ -91,7 +91,7 @@ const Channels = () => {
                   <Dropdown.Toggle
                     split
                     className="flex-grow-0 rounded-0"
-                    variant={channel.id === currentChanel.id ? 'secondary' : ''}
+                    variant={channel.id === currentChanel ? 'secondary' : ''}
                   >
                     <span className="visually-hidden">
                       {t('channelMenu.control')}
@@ -107,7 +107,7 @@ const Channels = () => {
                   </Dropdown.Menu>
                 </Dropdown>
               ) : null}
-            </Container>
+            </div>
           </li>
         ))}
       </ul>

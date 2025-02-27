@@ -16,7 +16,6 @@ export const channelsApi = createApi({
   endpoints: (builder) => ({
     getСhannels: builder.query({
       query: () => '',
-      keepUnusedDataFor: 1,
       providesTags: ['Channels'],
     }),
     addChannel: builder.mutation({

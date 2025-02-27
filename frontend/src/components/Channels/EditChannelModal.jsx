@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
 import { Modal, Form, Card } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
@@ -7,12 +6,10 @@ import { toast } from 'react-toastify';
 import leoProfanity from 'leo-profanity';
 import { useEditChannelMutation, useGetСhannelsQuery } from '../../services/channelsApi.js';
 import channelSchema from './shema.js';
-import { addCurrentChannel } from '../../redux/slices/uiSlice.js';
 
 const EditChannelModal = ({ uiState, hideModal }) => {
-  const [editChannel, { data }] = useEditChannelMutation();
+  const [editChannel, { isSuccess }] = useEditChannelMutation();
   const { data: channels = [] } = useGetСhannelsQuery();
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const inputRef = useRef();
@@ -20,12 +17,16 @@ const EditChannelModal = ({ uiState, hideModal }) => {
     inputRef.current.select();
   }, []);
 
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success(t('toasts.сhannelEdited'));
+    }
+  }, [isSuccess, t]);
+
   const handleSubmit = async (values) => {
     const newChannelName = leoProfanity.clean(values.name.trim());
     await editChannel({ id: uiState.modal.data.id, name: newChannelName });
     hideModal();
-    toast.success(t('toasts.сhannelEdited'));
-    dispatch(addCurrentChannel(data));
   };
 
   const channelsName = channels.map((channel) => channel.name);

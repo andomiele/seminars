@@ -1,23 +1,16 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { Modal, Form, Card } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import { useDeleteChannelMutation, useGetСhannelsQuery } from '../../services/channelsApi.js';
-import { DEFAUL_CHANNEL } from '../../redux/slices/constants.js';
-import { addCurrentChannel } from '../../redux/slices/uiSlice.js';
+import { useDeleteChannelMutation } from '../../services/channelsApi.js';
 
 const DeleteChannelModal = ({ uiState, hideModal }) => {
   const [deleteChannel, { isSuccess }] = useDeleteChannelMutation();
-  const { data: channels = [] } = useGetСhannelsQuery();
-  const defaultChannel = channels.find((channel) => channel.id === DEFAUL_CHANNEL);
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const handleSubmit = async () => {
     await deleteChannel({ id: uiState.modal.data.id });
-    await dispatch(addCurrentChannel(defaultChannel));
     hideModal();
   };
 

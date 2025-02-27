@@ -16,8 +16,6 @@ const initialState = {
   },
   channel: {
     id: DEFAUL_CHANNEL,
-    name: '',
-    removable: false,
   },
 };
 
@@ -71,8 +69,6 @@ const uiSlice = createSlice({
       Object.assign(state.channel, {
         ...initialState.channel,
         id: payload.id,
-        name: payload.name,
-        removable: payload.removable,
       });
     },
   },
@@ -83,6 +79,22 @@ const uiSlice = createSlice({
     setErrorEndpoints.forEach((endpoint) => {
       builder.addMatcher(endpoint, setError);
     });
+    builder.addMatcher(
+      channelsApi.endpoints.addChannel.matchFulfilled,
+      (state, { payload }) => {
+        Object.assign(state.channel, {
+          id: payload.id,
+        });
+      },
+    );
+    builder.addMatcher(
+      channelsApi.endpoints.deleteChannel.matchFulfilled,
+      (state, { payload }) => {
+        if (state.channel.id === payload.id) {
+          state.channel.id = DEFAUL_CHANNEL;
+        }
+      },
+    );
   },
 });
 
