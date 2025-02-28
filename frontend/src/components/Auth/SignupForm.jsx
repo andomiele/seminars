@@ -2,36 +2,32 @@ import React, { useRef, useEffect } from 'react';
 import { Form, Image, Col } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { useSelector, useDispatch } from 'react-redux';
+import isEmpty from 'lodash/isEmpty';
 import { useNavigate } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
 import avatarSignup from '../../assets/avatarSignup.jpg';
 import { signupSchema } from './shema.js';
-import { setAuth } from '../../redux/slices/authSlice.js';
 import { useSignupMutation } from '../../services/authApi.js';
-import { clearErrorAction } from '../../redux/slices/uiSlice.js';
 import { selectAuthError } from '../../redux/slices/selectorsUi.js';
+import { clearErrorAction } from '../../redux/slices/uiSlice.js';
+import { PAGE_MAIN, getPage } from '../configs/configRouts.js';
 
 const SignupForm = () => {
-  const navigate = useNavigate();
   const { t } = useTranslation();
+  const [setUser, { isSuccess }] = useSignupMutation();
   const dispatch = useDispatch();
-  const [setUser] = useSignupMutation();
+  const navigate = useNavigate();
   const authError = useSelector(selectAuthError);
 
   const handleSubmit = async (values) => {
-    await setUser(values)
-      .then((response) => {
-        dispatch(setAuth({
-          username: response.data.username,
-          token: response.data.token,
-        }));
-        dispatch(clearErrorAction());
-        navigate('/');
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    await setUser(values);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(getPage(PAGE_MAIN));
+    }
+  }, [isSuccess, navigate]);
 
   const inputRef = useRef(null);
   useEffect(() => {
@@ -48,9 +44,19 @@ const SignupForm = () => {
     onSubmit: handleSubmit,
   });
 
+  const hasValidateErrors = !isEmpty(formik.errors);
+
   const extraErrors = {
     ...formik.errors,
-    ...(!!authError && { confirmPassword: authError }),
+    ...(!!authError && !hasValidateErrors && { confirmPassword: authError }),
+  };
+
+  const handleChange = (event) => {
+    formik.handleChange(event);
+    if (!authError) {
+      return;
+    }
+    dispatch(clearErrorAction());
   };
 
   return (
@@ -67,14 +73,14 @@ const SignupForm = () => {
             id="username"
             required
             placeholder={t('signUpForm.username')}
-            onChange={formik.handleChange}
+            onChange={handleChange}
             value={formik.values.username}
             ref={inputRef}
             isInvalid={(formik.touched.username
               && formik.errors.username) || !!authError}
             onBlur={formik.handleBlur}
           />
-          {!authError && (
+          {hasValidateErrors && formik.errors.username && (
             <Form.Control.Feedback type="invalid" tooltip>
               {t(`errors.${extraErrors.username}`)}
             </Form.Control.Feedback>
@@ -87,14 +93,14 @@ const SignupForm = () => {
             name="password"
             id="password"
             required
-            placeholder={t('loginForm.password')}
-            onChange={formik.handleChange}
+            placeholder={t('signupForm.password')}
+            onChange={handleChange}
             value={formik.values.password}
             isInvalid={(formik.touched.password
               && formik.errors.password) || !!authError}
             onBlur={formik.handleBlur}
           />
-          {!authError && (
+          {hasValidateErrors && formik.errors.password && (
             <Form.Control.Feedback type="invalid" tooltip>
               {t(`errors.${extraErrors.password}`)}
             </Form.Control.Feedback>
@@ -108,15 +114,18 @@ const SignupForm = () => {
             id="confirmPassword"
             required
             placeholder={t('signUpForm.confirmPassword')}
-            onChange={formik.handleChange}
+            onChange={handleChange}
             value={formik.values.confirmPassword}
             isInvalid={(formik.touched.confirmPassword
             && formik.errors.confirmPassword) || !!authError}
             onBlur={formik.handleBlur}
           />
-          <Form.Control.Feedback type="invalid" tooltip>
-            {t(`errors.${extraErrors.confirmPassword}`)}
-          </Form.Control.Feedback>
+          {((!!authError && !hasValidateErrors)
+          || (hasValidateErrors && formik.errors.confirmPassword)) && (
+            <Form.Control.Feedback type="invalid" tooltip>
+              {t(`errors.${extraErrors.confirmPassword}`)}
+            </Form.Control.Feedback>
+          )}
           <Form.Label htmlFor="confirmPassword">{t('signupForm.confirmPassword')}</Form.Label>
         </Form.Group>
         <button type="submit" className="w-100 btn btn-outline-primary">
