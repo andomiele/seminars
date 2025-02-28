@@ -21,14 +21,14 @@ const AddChannelModal = ({ uiState, hideModal }) => {
   const handleSubmit = async (values) => {
     const channelName = leoProfanity.clean(values.name.trim());
     await addChannel({ name: channelName });
-    hideModal();
   };
 
   useEffect(() => {
     if (isSuccess) {
       toast.success(t('toasts.сhannelAdded'));
+      hideModal();
     }
-  }, [isSuccess, t]);
+  }, [isSuccess, t, hideModal]);
 
   const formik = useFormik({
     initialValues: { name: '' },
@@ -63,7 +63,6 @@ const AddChannelModal = ({ uiState, hideModal }) => {
               <button type="submit" className="btn btn-primary">{uiState.modal.data.sentBtn}</button>
             </Card.Body>
           </Form.Group>
-
         </Form>
       </Modal.Body>
     </>

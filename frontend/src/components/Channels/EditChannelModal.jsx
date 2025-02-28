@@ -1,15 +1,16 @@
 import React, { useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { Modal, Form, Card } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import leoProfanity from 'leo-profanity';
-import { useEditChannelMutation, useGetСhannelsQuery } from '../../services/channelsApi.js';
+import { useEditChannelMutation, selectChannelsNames } from '../../services/channelsApi.js';
 import channelSchema from './shema.js';
 
 const EditChannelModal = ({ uiState, hideModal }) => {
   const [editChannel, { isSuccess }] = useEditChannelMutation();
-  const { data: channels = [] } = useGetСhannelsQuery();
+  const channelsName = useSelector(selectChannelsNames);
   const { t } = useTranslation();
 
   const inputRef = useRef();
@@ -28,8 +29,6 @@ const EditChannelModal = ({ uiState, hideModal }) => {
     await editChannel({ id: uiState.modal.data.id, name: newChannelName });
     hideModal();
   };
-
-  const channelsName = channels.map((channel) => channel.name);
 
   const formik = useFormik({
     initialValues: { name: uiState.modal.data.name },
