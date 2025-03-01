@@ -1,9 +1,15 @@
 /* eslint-disable no-param-reassign */
 import { createSelector, createSlice } from '@reduxjs/toolkit';
+import { usersApi } from '../../services/authApi';
 
 const initialState = {
   token: localStorage.getItem('token'),
   username: localStorage.getItem('username'),
+};
+
+const setStorage = (payload) => {
+  localStorage.setItem('token', payload.token);
+  localStorage.setItem('username', payload.username);
 };
 
 const authSlice = createSlice({
@@ -11,14 +17,37 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setAuth: (state, { payload }) => {
-      localStorage.setItem('token', payload.token);
-      localStorage.setItem('username', payload.username);
+      setStorage(payload);
       Object.assign(state, {
         ...initialState,
         token: payload.token,
         username: payload.username,
       });
     },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      usersApi.endpoints.login.matchFulfilled,
+      (state, { payload }) => {
+        Object.assign(state, {
+          ...initialState,
+          token: payload.token,
+          username: payload.username,
+        });
+        setStorage(payload);
+      },
+    );
+    builder.addMatcher(
+      usersApi.endpoints.signup.matchFulfilled,
+      (state, { payload }) => {
+        Object.assign(state, {
+          ...initialState,
+          token: payload.token,
+          username: payload.username,
+        });
+        setStorage(payload);
+      },
+    );
   },
 });
 
