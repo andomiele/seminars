@@ -38,11 +38,11 @@ const App = () => {
           <Route element={<PublicRoute />}>
             <Route path={getPage(PAGE_LOGIN)} element={<AuthPage />} />
             <Route path={getPage(PAGE_SIGNUP)} element={<SignupPage />} />
-            <Route path={getPage(PAGE_NOT_FOUND)} element={<ErrorPage />} />
           </Route>
           <Route element={<PrivateRoute />}>
             <Route path={getPage(PAGE_MAIN)} element={<MainPage />} />
           </Route>
+          <Route path={getPage(PAGE_NOT_FOUND)} element={<ErrorPage />} />
         </Routes>
       </div>
       <Toaster
