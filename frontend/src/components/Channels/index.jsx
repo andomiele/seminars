@@ -20,7 +20,6 @@ const Channels = () => {
 
   const setAddModalInfo = () => {
     dispatch(showModalInfo({
-      isVisible: true,
       type: 'adding',
       data: {
         title: t('modal.addChannel'),
@@ -34,7 +33,6 @@ const Channels = () => {
 
   const setRemovingModalInfo = (channel) => {
     dispatch(showModalInfo({
-      isVisible: true,
       type: 'removing',
       data: {
         title: t('modal.deleteChannel'),
@@ -49,7 +47,6 @@ const Channels = () => {
 
   const setEditingModalInfo = (channel) => {
     dispatch(showModalInfo({
-      isVisible: true,
       type: 'editing',
       data: {
         title: t('modal.editChannel'),
