@@ -70,7 +70,7 @@ const uiSlice = createSlice({
       });
     },
     clearError,
-    addCurrentChannel: (state, { payload }) => {
+    setCurrentChannel: (state, { payload }) => {
       Object.assign(state.channel, {
         ...initialState.channel,
         id: payload.id,
@@ -107,7 +107,7 @@ export const {
   showModalInfo,
   hideModalInfo,
   clearError: clearErrorAction,
-  addCurrentChannel,
+  setCurrentChannel,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

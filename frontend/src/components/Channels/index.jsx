@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Dropdown, Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { PlusSquare } from 'react-bootstrap-icons';
-import { showModalInfo, addCurrentChannel } from '../../redux/slices/uiSlice.js';
+import { showModalInfo, setCurrentChannel } from '../../redux/slices/uiSlice.js';
 import { useGetСhannelsQuery } from '../../services/channelsApi.js';
 import { selectCurrentChannelId } from '../../redux/slices/selectorsUi.js';
 import Spinner from '../Spinner/Spinner.jsx';
@@ -80,7 +80,7 @@ const Channels = () => {
             <div className="d-flex show dropdown btn-group">
               <button
                 type="button"
-                onClick={() => dispatch(addCurrentChannel(channel))}
+                onClick={() => dispatch(setCurrentChannel(channel))}
                 className={`w-100 rounded-0 text-start text-truncate btn ${channel.id && channel.id === currentChanel ? 'btn-secondary' : ''}`}
               >
                 <span className="me-1">#</span>
