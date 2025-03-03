@@ -8,8 +8,8 @@ import AuthPage from './components/Auth/AuthPage.jsx';
 import SignupPage from './components/Auth/SignupPage.jsx';
 import PublicRoute from './misc/PublicRoute.jsx';
 import PrivateRoute from './misc/PrivateRoute.jsx';
-import Header from './components/Header/Header.jsx';
-import MainPage from './components/Main/MainPage.jsx';
+import Header from './components/Header';
+import MainPage from './components/Main';
 import ErrorPage from './components/NotFound/NotFoundPage.jsx';
 import { selectToastsError } from './redux/slices/selectorsUi.js';
 import {
