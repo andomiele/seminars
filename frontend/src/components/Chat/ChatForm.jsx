@@ -21,7 +21,7 @@ const ChatForm = ({ channelId, username }) => {
     setText('');
   };
 
-  const handleUpdateNewMessageText = (e) => setText(e.target.value);
+  const handleInput = (e) => setText(e.target.value);
 
   return (
     <Form noValidate="" className="py-1 border rounded-2" onSubmit={handleAddMessage}>
@@ -33,7 +33,7 @@ const ChatForm = ({ channelId, username }) => {
           placeholder="Введите сообщение..."
           className="border-0 p-0 ps-2 form-control"
           value={text}
-          onChange={handleUpdateNewMessageText}
+          onChange={handleInput}
         />
         <button type="submit" disabled="" className="btn btn-group-vertical">
           <ArrowRightSquare size={20} />
