@@ -15,14 +15,19 @@ import { clearErrorAction } from '../../redux/slices/uiSlice.js';
 const AuthForm = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const [getAuth] = useLoginMutation();
+  const [getAuth, { isSuccess }] = useLoginMutation();
   const dispatch = useDispatch();
   const authError = useSelector(selectAuthError);
 
   const handleSubmit = async (values) => {
     await getAuth(values);
-    navigate(getPage(PAGE_MAIN));
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(getPage(PAGE_MAIN));
+    }
+  }, [isSuccess, navigate]);
 
   const inputRef = useRef();
   useEffect(() => {
