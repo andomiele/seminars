@@ -5,7 +5,7 @@ import i18next from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
-import { addCurrentChannel } from './redux/slices/uiSlice.js';
+import { setCurrentChannel } from './redux/slices/uiSlice.js';
 import { channelsApi } from './services/channelsApi';
 import { messagesApi } from './services/messagesApi';
 import rollbarConfig from './components/configs/rollbar.js';
@@ -53,7 +53,7 @@ const init = async (socket) => {
   const listenerRemoveChannel = (payload) => {
     const state = store.getState();
     if (state.ui.channel.id === payload.id) {
-      store.dispatch(addCurrentChannel(state.ui.channel));
+      store.dispatch(setCurrentChannel(state.ui.channel));
     }
     store.dispatch(
       channelsApi.util.updateQueryData(
