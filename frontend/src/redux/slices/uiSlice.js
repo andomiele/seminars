@@ -62,7 +62,12 @@ const uiSlice = createSlice({
       });
     },
     hideModalInfo: (state) => {
-      state.modal = initialState.modal;
+      Object.assign(state.modal, {
+        ...initialState.modal,
+        isVisible: false,
+        type: null,
+        data: null,
+      });
     },
     clearError,
     addCurrentChannel: (state, { payload }) => {

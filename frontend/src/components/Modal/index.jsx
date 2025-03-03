@@ -36,11 +36,7 @@ const BaseModal = () => {
   const uiState = useSelector((state) => state.ui);
   const dispatch = useDispatch();
 
-  const hideModal = () => dispatch(hideModalInfo({
-    isVisible: false,
-    type: null,
-    data: null,
-  }));
+  const hideModal = () => dispatch(hideModalInfo());
 
   return (
     renderModal({ uiState, hideModal })

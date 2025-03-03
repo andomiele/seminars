@@ -24,6 +24,13 @@ const authSlice = createSlice({
         username: payload.username,
       });
     },
+    logout: (state) => {
+      Object.assign(state, {
+        ...initialState,
+        token: '',
+        username: '',
+      });
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -51,7 +58,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { setAuth } = authSlice.actions;
+export const { setAuth, logout } = authSlice.actions;
 
 const selectAuth = (state) => state.auth;
 
