@@ -14,7 +14,7 @@ const initialState = {
     type: null,
     data: null,
   },
-  channel: {
+  currentChannel: {
     id: DEFAUL_CHANNEL,
   },
 };
@@ -71,8 +71,8 @@ const uiSlice = createSlice({
     },
     clearError,
     setCurrentChannel: (state, { payload }) => {
-      Object.assign(state.channel, {
-        ...initialState.channel,
+      Object.assign(state.currentChannel, {
+        ...initialState.currentChannel,
         id: payload.id,
       });
     },
@@ -87,7 +87,7 @@ const uiSlice = createSlice({
     builder.addMatcher(
       channelsApi.endpoints.addChannel.matchFulfilled,
       (state, { payload }) => {
-        Object.assign(state.channel, {
+        Object.assign(state.currentChannel, {
           id: payload.id,
         });
       },
@@ -95,8 +95,8 @@ const uiSlice = createSlice({
     builder.addMatcher(
       channelsApi.endpoints.deleteChannel.matchFulfilled,
       (state, { payload }) => {
-        if (state.channel.id === payload.id) {
-          state.channel.id = DEFAUL_CHANNEL;
+        if (state.currentChannel.id === payload.id) {
+          state.currentChannel.id = DEFAUL_CHANNEL;
         }
       },
     );
