@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { hideModal } from '../../redux/slices/uiSlice';
+import { selectIsVisibleModal, selectModalType, selectModalData } from '../../redux/slices/selectorsUi';
 import AddChannelModal from '../Channels/AddChannelModal';
 import EditChannelModal from '../Channels/EditChannelModal';
 import DeleteChannelModal from '../Channels/DeleteChannelModal';
@@ -12,34 +13,27 @@ const modals = {
   editing: EditChannelModal,
 };
 
-const renderModal = ({ uiState, handleHideModal }) => {
-  if (uiState.modal.isVisible === false) {
-    return null;
-  }
-  const Component = modals[uiState.modal.type];
-  return (
-    <>
-      <div className="fade modal-backdrop show" />
-      <Modal show centered>
-        <Component
-          show
-          centered
-          uiState={uiState}
-          hideModal={handleHideModal}
-        />
-      </Modal>
-    </>
-  );
-};
-
 const BaseModal = () => {
-  const uiState = useSelector((state) => state.ui);
+  const isVisible = useSelector(selectIsVisibleModal);
+  const modalType = useSelector(selectModalType);
+  const modalData = useSelector(selectModalData);
   const dispatch = useDispatch();
-
-  const handleHideModal = () => dispatch(hideModal());
+  const Component = modals[modalType];
 
   return (
-    renderModal({ uiState, handleHideModal })
+    isVisible ? (
+      <>
+        <div className="fade modal-backdrop show" />
+        <Modal show centered>
+          <Component
+            show
+            centered
+            uiState={modalData}
+            hideModal={() => dispatch(hideModal())}
+          />
+        </Modal>
+      </>
+    ) : null
   );
 };
 
