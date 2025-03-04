@@ -19,9 +19,12 @@ const Chat = () => {
   const inputRef = useRef(null);
   useEffect(() => {
     if (inputRef.current) {
-      inputRef.current.scrollIntoView();
+      inputRef.current.scrollTo({
+        top: inputRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
     }
-  }, [currentMessages]);
+  }, [channel, messages.length]);
 
   if (isLoading) {
     return <Spinner />;
