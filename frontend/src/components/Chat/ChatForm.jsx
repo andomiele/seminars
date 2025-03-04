@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Form } from 'react-bootstrap';
 import { ArrowRightSquare } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';
+import leoProfanity from 'leo-profanity';
 import { useAddMessageMutation } from '../../services/messagesApi.js';
 
 const ChatForm = ({ channelId, username }) => {
@@ -16,7 +17,7 @@ const ChatForm = ({ channelId, username }) => {
 
   const handleAddMessage = (event) => {
     event.preventDefault();
-    const newMessage = { body: text, channelId, username };
+    const newMessage = { body: leoProfanity.clean(text), channelId, username };
     addMessage(newMessage);
     setText('');
   };
