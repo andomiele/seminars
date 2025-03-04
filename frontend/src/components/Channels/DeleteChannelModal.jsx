@@ -10,7 +10,7 @@ const DeleteChannelModal = ({ uiState, hideModal }) => {
   const { t } = useTranslation();
 
   const handleSubmit = async () => {
-    await deleteChannel({ id: uiState.modal.data.id });
+    await deleteChannel({ id: uiState.id });
     hideModal();
   };
 
@@ -21,22 +21,22 @@ const DeleteChannelModal = ({ uiState, hideModal }) => {
   }, [isSuccess, t]);
 
   const formik = useFormik({
-    initialValues: { name: uiState.modal.data.name },
+    initialValues: { name: uiState.name },
     onSubmit: handleSubmit,
   });
 
   return (
     <>
       <Modal.Header closeButton onHide={hideModal}>
-        <Modal.Title>{uiState.modal.data.title}</Modal.Title>
+        <Modal.Title>{uiState.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form className="" onSubmit={formik.handleSubmit}>
           <Form.Group>
-            <p className="lead">{uiState.modal.data.question}</p>
+            <p className="lead">{uiState.question}</p>
             <Card.Body className="d-flex justify-content-end">
-              <button type="button" className="me-2 btn btn-secondary" onClick={hideModal}>{uiState.modal.data.canselBtn}</button>
-              <button type="submit" className="btn btn-danger">{uiState.modal.data.deletelBtn}</button>
+              <button type="button" className="me-2 btn btn-secondary" onClick={hideModal}>{uiState.canselBtn}</button>
+              <button type="submit" className="btn btn-danger">{uiState.deletelBtn}</button>
             </Card.Body>
           </Form.Group>
         </Form>

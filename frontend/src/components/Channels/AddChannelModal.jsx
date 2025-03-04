@@ -39,7 +39,7 @@ const AddChannelModal = ({ uiState, hideModal }) => {
   return (
     <>
       <Modal.Header closeButton onHide={hideModal}>
-        <Modal.Title>{uiState.modal.data.title}</Modal.Title>
+        <Modal.Title>{uiState.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={formik.handleSubmit}>
@@ -59,8 +59,8 @@ const AddChannelModal = ({ uiState, hideModal }) => {
             </Form.Control.Feedback>
             <Form.Label className="visually-hidden" htmlFor="name">{t('modal.channelName')}</Form.Label>
             <Card.Body className="d-flex justify-content-end">
-              <button type="button" className="me-2 btn btn-secondary" onClick={hideModal}>{uiState.modal.data.canselBtn}</button>
-              <button type="submit" className="btn btn-primary">{uiState.modal.data.sentBtn}</button>
+              <button type="button" className="me-2 btn btn-secondary" onClick={hideModal}>{uiState.canselBtn}</button>
+              <button type="submit" className="btn btn-primary">{uiState.sentBtn}</button>
             </Card.Body>
           </Form.Group>
         </Form>

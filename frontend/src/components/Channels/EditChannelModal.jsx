@@ -26,12 +26,12 @@ const EditChannelModal = ({ uiState, hideModal }) => {
 
   const handleSubmit = async (values) => {
     const newChannelName = leoProfanity.clean(values.name.trim());
-    await editChannel({ id: uiState.modal.data.id, name: newChannelName });
+    await editChannel({ id: uiState.id, name: newChannelName });
     hideModal();
   };
 
   const formik = useFormik({
-    initialValues: { name: uiState.modal.data.name },
+    initialValues: { name: uiState.name },
     validationSchema: channelSchema(channelsName),
     onSubmit: handleSubmit,
   });
@@ -39,7 +39,7 @@ const EditChannelModal = ({ uiState, hideModal }) => {
   return (
     <>
       <Modal.Header closeButton onHide={hideModal}>
-        <Modal.Title>{uiState.modal.data.title}</Modal.Title>
+        <Modal.Title>{uiState.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form className="" onSubmit={formik.handleSubmit}>
@@ -59,8 +59,8 @@ const EditChannelModal = ({ uiState, hideModal }) => {
             </Form.Control.Feedback>
             <Form.Label className="visually-hidden" htmlFor="name">{t('modal.channelName')}</Form.Label>
             <Card.Body className="d-flex justify-content-end">
-              <button type="button" className="me-2 btn btn-secondary" onClick={hideModal}>{uiState.modal.data.canselBtn}</button>
-              <button type="submit" className="btn btn-primary">{uiState.modal.data.sentBtn}</button>
+              <button type="button" className="me-2 btn btn-secondary" onClick={hideModal}>{uiState.canselBtn}</button>
+              <button type="submit" className="btn btn-primary">{uiState.sentBtn}</button>
             </Card.Body>
           </Form.Group>
         </Form>
