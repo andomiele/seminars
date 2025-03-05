@@ -53,7 +53,7 @@ const uiSlice = createSlice({
   name: 'ui',
   initialState,
   reducers: {
-    showModalInfo: (state, { payload }) => {
+    showModal: (state, { payload }) => {
       Object.assign(state.modal, {
         ...initialState.modal,
         isVisible: true,
@@ -104,7 +104,7 @@ const uiSlice = createSlice({
 });
 
 export const {
-  showModalInfo,
+  showModal,
   hideModal,
   clearError: clearErrorAction,
   setCurrentChannel,

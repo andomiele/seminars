@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Dropdown, Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { PlusSquare } from 'react-bootstrap-icons';
-import { showModalInfo, setCurrentChannel } from '../../redux/slices/uiSlice.js';
+import { showModal, setCurrentChannel } from '../../redux/slices/uiSlice.js';
 import { useGetСhannelsQuery } from '../../services/channelsApi.js';
 import { selectCurrentChannelId } from '../../redux/slices/selectorsUi.js';
 import Spinner from '../Spinner/Spinner.jsx';
@@ -19,7 +19,7 @@ const Channels = () => {
   }
 
   const showAddModal = () => {
-    dispatch(showModalInfo({
+    dispatch(showModal({
       type: 'adding',
       data: {
         title: t('modal.addChannel'),
@@ -32,7 +32,7 @@ const Channels = () => {
   };
 
   const showRemovingModal = (channel) => {
-    dispatch(showModalInfo({
+    dispatch(showModal({
       type: 'removing',
       data: {
         title: t('modal.deleteChannel'),
@@ -46,7 +46,7 @@ const Channels = () => {
   };
 
   const showEditingModal = (channel) => {
-    dispatch(showModalInfo({
+    dispatch(showModal({
       type: 'editing',
       data: {
         title: t('modal.editChannel'),
