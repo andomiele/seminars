@@ -9,7 +9,7 @@ import SignupPage from './components/Auth/SignupPage.jsx';
 import PublicRoute from './misc/PublicRoute.jsx';
 import PrivateRoute from './misc/PrivateRoute.jsx';
 import Header from './components/Header';
-import MainPage from './components/Main';
+import Main from './components/Main';
 import ErrorPage from './components/NotFound/NotFoundPage.jsx';
 import { selectToastsError } from './redux/slices/selectorsUi.js';
 import {
@@ -40,7 +40,7 @@ const App = () => {
             <Route path={getPage(PAGE_SIGNUP)} element={<SignupPage />} />
           </Route>
           <Route element={<PrivateRoute />}>
-            <Route path={getPage(PAGE_MAIN)} element={<MainPage />} />
+            <Route path={getPage(PAGE_MAIN)} element={<Main />} />
           </Route>
           <Route path={getPage(PAGE_NOT_FOUND)} element={<ErrorPage />} />
         </Routes>
