@@ -18,7 +18,7 @@ const Channels = () => {
     return <Spinner />;
   }
 
-  const setAddModal = () => {
+  const showAddModal = () => {
     dispatch(showModalInfo({
       type: 'adding',
       data: {
@@ -31,7 +31,7 @@ const Channels = () => {
     }));
   };
 
-  const setRemovingModal = (channel) => {
+  const showRemovingModal = (channel) => {
     dispatch(showModalInfo({
       type: 'removing',
       data: {
@@ -45,7 +45,7 @@ const Channels = () => {
     }));
   };
 
-  const setEditingModal = (channel) => {
+  const showEditingModal = (channel) => {
     dispatch(showModalInfo({
       type: 'editing',
       data: {
@@ -65,7 +65,7 @@ const Channels = () => {
         <button
           type="button"
           className="p-0 text-primary btn btn-group-vertical"
-          onClick={() => setAddModal()}
+          onClick={() => showAddModal()}
         >
           <PlusSquare size={20} />
           <span className="visually-hidden">{t('mainPage.plus')}</span>
@@ -95,10 +95,10 @@ const Channels = () => {
                     </span>
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => setRemovingModal(channel)}>
+                    <Dropdown.Item onClick={() => showRemovingModal(channel)}>
                       {t('channelMenu.delete')}
                     </Dropdown.Item>
-                    <Dropdown.Item onClick={() => setEditingModal(channel)}>
+                    <Dropdown.Item onClick={() => showEditingModal(channel)}>
                       {t('channelMenu.rename')}
                     </Dropdown.Item>
                   </Dropdown.Menu>
