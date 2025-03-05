@@ -22,17 +22,14 @@ const BaseModal = () => {
 
   return (
     isVisible ? (
-      <>
-        <div className="fade modal-backdrop show" />
-        <Modal show centered>
-          <Component
-            show
-            centered
-            uiState={modalData}
-            hideModal={() => dispatch(hideModal())}
-          />
-        </Modal>
-      </>
+      <Modal show centered>
+        <Component
+          show
+          centered
+          uiState={modalData}
+          hideModal={() => dispatch(hideModal())}
+        />
+      </Modal>
     ) : null
   );
 };
