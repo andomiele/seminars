@@ -1,6 +1,6 @@
 <h1 align="center">Seminars list</h1>
 <h2 align="center">
-  <a  href="seminars-1rabqjb8q-andomieles-projects.vercel.app">Press here to live demo</a>
+  <a  href="https://seminars-dusky.vercel.app/">Press here to live demo</a>
   
   <div align="center">
     <br/>
