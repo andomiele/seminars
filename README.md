@@ -1,16 +1,4 @@
 <h1 align="center">Seminars list</h1>
-<h2 align="center">
-  <a  href="https://seminars-dusky.vercel.app/">Press here to live demo</a>
-  
-  <div align="center">
-    <br/>
-
-  [![Maintainability](https://api.codeclimate.com/v1/badges/fd5a9541cb90e78b7aee/maintainability)](https://codeclimate.com/github/andomiele/seminars/maintainability)
-
-  [![Test Coverage](https://api.codeclimate.com/v1/badges/fd5a9541cb90e78b7aee/test_coverage)](https://codeclimate.com/github/andomiele/seminars/test_coverage)
-
-  </div>
-</h2>
 <h3 align="center">A simple list of seminars that is displayed using cards </h3>
 <h3 align="left">Implemented features:</h3>
   <ul>
