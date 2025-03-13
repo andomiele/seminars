@@ -1,24 +1,21 @@
-<h1 align="center">Hexlet Chat</h1>
+<h1 align="center">Seminars list</h1>
 <h2 align="center">
-  <a  href="https://frontend-project-12-sxal.onrender.com">Press here to live demo</a>
+  <a  href="seminars-1rabqjb8q-andomieles-projects.vercel.app">Press here to live demo</a>
   
   <div align="center">
     <br/>
-  
-  [![Actions Status](https://github.com/andomiele/frontend-project-12/workflows/hexlet-check/badge.svg)](https://github.com/andomiele/frontend-project-12/actions)
-  [![Maintainability](https://api.codeclimate.com/v1/badges/3c737a9c2d87d1cf7ca8/maintainability)](https://codeclimate.com/github/andomiele/frontend-project-12/maintainability)
+
+  [![Maintainability](https://api.codeclimate.com/v1/badges/fd5a9541cb90e78b7aee/maintainability)](https://codeclimate.com/github/andomiele/seminars/maintainability)
+
+  [![Test Coverage](https://api.codeclimate.com/v1/badges/fd5a9541cb90e78b7aee/test_coverage)](https://codeclimate.com/github/andomiele/seminars/test_coverage)
 
   </div>
 </h2>
-<h3 align="center">Browser-based Slack chat application. This is a simplified version of a real-time messaging application.</h3>
+<h3 align="center">A simple list of seminars that is displayed using cards </h3>
 <h3 align="left">Implemented features:</h3>
   <ul>
-    <li>User authorization;</li>
-    <li>User registration;</li>
-    <li>Adding a chat room;</li>
-    <li>Rename chat;</li>
-    <li>Deleting a chat;</li>
-    <li>Sending and receiving messages.</li>
+    <li>Rename seminar;</li>
+    <li>Deleting a seminar;</li>
   </ul>
 
 <h2>
@@ -29,7 +26,7 @@
 
 #### clone the repository
 ```
-git clone https://github.com/andomiele/frontend-project-12.git
+git clone https://github.com/andomiele/seminars.git
 ```
 #### install dependencies and let your system run the package
 ```
@@ -38,7 +35,7 @@ npm ci
 ## Development build
 #### start backend server
 ```
-make start-backend
+make start-server
 ```
 #### start frontend
 ```
@@ -58,9 +55,39 @@ make start
   <li>Vite</li>
   <li>React</li>
   <li>React RTK Query</li>
-  <li>React-toastify</li>
   <li>Redux (reduxjs/toolkit)</li>
-  <li>WebSockets</li>
-  <li>leo-profanity for badwords filter</li>
   <li>i18next</li>
 </ul>
+
+# Initial assignment
+
+Необходимо развернуть локально `json-server` и загрузить в него данные **seminars**. Используйте любые удобные технологии, но обязательно с использованием React для реализации следующих функций:
+
+1. **Запрос данных**
+
+   - Запросите данные с семинарами из `json-server`.
+
+2. **Отрисовка списка семинаров**
+
+   - Отобразите список семинаров на странице.
+
+3. **Удаление семинара**
+
+   - Реализуйте кнопку удаления семинара, которая при клике открывает окно подтверждения.
+   - При подтверждении удаления отправьте `DELETE` запрос на сервер.
+
+4. **Редактирование семинара**
+
+   - Реализуйте кнопку редактирования семинара.
+   - Редактирование должно происходить в модальном окне.
+
+5. **Размещение на GitHub**
+   - Залейте проект на GitHub и пришлите ссылку.
+   - **Важно:** `json-server` должен находиться в том же репозитории, что и приложение.
+
+## Дополнительные рекомендации
+
+- Используйте современные подходы (например, React Hooks, функциональные компоненты).
+- Обратите внимание на обработку ошибок и состояния загрузки.
+- Добавьте комментарии в код для пояснения ключевых моментов реализации.
+
